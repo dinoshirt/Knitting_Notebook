@@ -16,7 +16,15 @@ I hope this virtual knitting notebook will solve many of these issues and encour
 
 ## User stories
 
-- item 1
-- item 2
-- item 3
+- I want to start documenting a new knitting project in my notebook, in the project section.
+- I realized I wrote down the wrong yarn name, I want to go back and change this information.
+- I want to flip through the notebook and find the project I'm interested in.
+- I want to jot down some inspiration that I may use for a project later, in the inspiration section.
+- I want to reference inspiration in a project.
+- I made a swatch, and I want to save its image and dimensions, in the swatch section.
+- I blocked that swatch, I want to add the new dimensions of the swatch.
+- I want to reference a swatch in a project.
+- I want to add useful images or links to the techniques section.
+- I want to reference a technique in a project.
+
 
