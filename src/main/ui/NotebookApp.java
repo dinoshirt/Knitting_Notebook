@@ -5,7 +5,9 @@ import model.KnittingProject;
 import model.*;
 
 import java.util.Scanner;
-//Code adapted from TellerApp
+// This class describes the console ui that the user can use on knitting projects
+// This class references code from here: CPSC210/TellerApp
+// Link: https://github.students.cs.ubc.ca/CPSC210/TellerApp
 
 public class NotebookApp {
     private AllKnittingProjects allCurrentKnittingProjects;
@@ -47,7 +49,7 @@ public class NotebookApp {
         input.useDelimiter("\n");
     }
 
-    // EFFECTS: displays menu of options to user
+    // EFFECTS: displays main menu of options to user
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\tc -> create new knitting project");
@@ -57,7 +59,7 @@ public class NotebookApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user command
+    // EFFECTS: processes user command from main menu
     private void processCommand(String command) {
         if (command.equals("c")) {
             createKnittingProject();
@@ -71,7 +73,7 @@ public class NotebookApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates a new named knitting project
+    // EFFECTS: creates a new named knitting project and adds it to all current knitting projects
     private void createKnittingProject() {
         System.out.print("Enter new project name: ");
         String projectName = input.next();
@@ -128,8 +130,8 @@ public class NotebookApp {
         }
     }
 
-    //MODIFIES: projectChosen
-    //EFFECTS: removes a yarn from the project
+    //MODIFIES: this, projectChosen
+    //EFFECTS: removes a yarn from the project if user inputs an existing yarn. If not, then will not remove anything.
     private void removeYarn(KnittingProject projectChosen) {
         int startingSupplies;
         int postRemovalSupplies;
@@ -149,8 +151,8 @@ public class NotebookApp {
 
     }
 
-    //MODIFIES: projectChosen
-    //EFFECTS: removes a needle from the project
+    //MODIFIES: this, projectChosen
+    //EFFECTS: removes a needle from the project if needle is present in project. If not, doesn't remove anything.
     private void removeNeedle(KnittingProject projectChosen) {
         int startingSupplies;
         int postRemovalSupplies;
@@ -170,7 +172,7 @@ public class NotebookApp {
 
     }
 
-    //MODIFIES: projectChosen
+    //MODIFIES: this, projectChosen
     //EFFECTS: adds a new yarn, needle, or note to the project
     private void addNewItem(String fieldChosen, KnittingProject projectChosen) {
         System.out.println("Please input the name of the item you would like to add: ");
