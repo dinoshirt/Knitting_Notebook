@@ -34,7 +34,7 @@ public class Note {
     //EFFECTS: Add text to the body of the note. If text already exists in the body, also add a space.
     public void addToBody(String additionalText) {
         if (this.getBody().equals("")) {
-            this.noteBody = this.noteBody + additionalText;
+            this.noteBody = ": " + this.noteBody + additionalText;
         } else {
             this.noteBody = this.noteBody + " " + additionalText;
         }

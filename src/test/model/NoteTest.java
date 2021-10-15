@@ -18,21 +18,21 @@ class NoteTest {
     @Test
     public void makeDateAndBody() {
         testNote.addToBody("new stuff");
-        assertEquals(testNote.getDate().toString() + "new stuff", testNote.getDateAndBody());
+        assertEquals(testNote.getDate().toString() + ": new stuff", testNote.getDateAndBody());
     }
 
     @Test
     public void addTextToEmptyNote() {
         assertEquals("", testNote.getBody());
         testNote.addToBody("new text");
-        assertEquals("new text", testNote.getBody());
+        assertEquals(": new text", testNote.getBody());
     }
 
     @Test
     public void addTextToNonEmptyNote() {
         addTextToEmptyNote();
         testNote.addToBody("more text");
-        assertEquals("new text more text", testNote.getBody());
+        assertEquals(": new text more text", testNote.getBody());
 
     }
 

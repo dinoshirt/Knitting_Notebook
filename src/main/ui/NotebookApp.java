@@ -116,30 +116,58 @@ public class NotebookApp {
         if (command.equals("a")) {
             addNewItem(fieldChosen, projectChosen);
         } else if (command.equals("r")) {
-            removeItem(fieldChosen, projectChosen);
+            if (fieldChosen.equals("yarn")) {
+                removeYarn(projectChosen);
+            } else if (fieldChosen.equals("needle")) {
+                removeNeedle(projectChosen);
+            } else if (fieldChosen.equals("note")) {
+                System.out.println("can't remove notes right now, sorry! Will implement later.");
+            }
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
-    //MODIFIES: projectChosen when yarn or needle is fieldChosen
-    //EFFECTS: removes a yarn or needle in the project. Will tell user that notes cannot be removed.
-    private void removeItem(String fieldChosen, KnittingProject projectChosen) {
+    //MODIFIES: projectChosen
+    //EFFECTS: removes a yarn from the project
+    private void removeYarn(KnittingProject projectChosen) {
+        int startingSupplies;
+        int postRemovalSupplies;
         System.out.println("Please input the name of the item you would like to remove: ");
         String itemName = input.next();
 
-        if (fieldChosen.equals("yarn")) {
-            projectChosen.getYarns().remove(itemName);
-            System.out.println(projectChosen.getYarns());
-            System.out.println(itemName + " was removed!");
-        } else if (fieldChosen.equals("needle")) {
-            projectChosen.getNeedles().remove(itemName);
-            System.out.println(projectChosen.getNeedles());
+        startingSupplies = projectChosen.getYarns().size();
+        projectChosen.getYarns().remove(itemName);
+        postRemovalSupplies = projectChosen.getYarns().size();
+
+        System.out.println(projectChosen.getYarns());
+        if (startingSupplies == postRemovalSupplies) {
+            System.out.println(itemName + " was NOT removed!");
+        } else {
             System.out.println(itemName + " was removed!");
         }
-        if (fieldChosen.equals("note")) {
-            System.out.println("can't remove notes right now, sorry! Will implement later.");
+
+    }
+
+    //MODIFIES: projectChosen
+    //EFFECTS: removes a needle from the project
+    private void removeNeedle(KnittingProject projectChosen) {
+        int startingSupplies;
+        int postRemovalSupplies;
+        System.out.println("Please input the name of the item you would like to remove: ");
+        String itemName = input.next();
+
+        startingSupplies = projectChosen.getNeedles().size();
+        projectChosen.getNeedles().remove(itemName);
+        postRemovalSupplies = projectChosen.getNeedles().size();
+
+        System.out.println(projectChosen.getNeedles());
+        if (startingSupplies == postRemovalSupplies) {
+            System.out.println(itemName + " was NOT removed!");
+        } else {
+            System.out.println(itemName + " was removed!");
         }
+
     }
 
     //MODIFIES: projectChosen
@@ -160,15 +188,15 @@ public class NotebookApp {
             projectChosen.getNotes().addNote(createdNote);
             System.out.println(createdNote.getDateAndBody());
         }
-        System.out.println(itemName + " was added!");
+        System.out.println("new " + fieldChosen + " was added!");
 
     }
 
     //EFFECTS: display the current yarn, needles, and notes in the project
     private void displayProjectInfo(KnittingProject selectedProject) {
         System.out.print("\n yarn:" + selectedProject.getYarns());
-        System.out.print("\n needles:" + selectedProject.getNeedles());
-        System.out.print("\n notes:" + selectedProject.getNotes().showAllNotes());
+        System.out.print("\n needle:" + selectedProject.getNeedles());
+        System.out.print("\n note:" + selectedProject.getNotes().showAllNotes());
     }
 
     // MODIFIES: this
