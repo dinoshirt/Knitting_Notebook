@@ -1,12 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+//This represents a list of notes, that may be associated with a knitting project.
 public class Notes {
     private ArrayList<Note> listOfNotes;
 
+    //EFFECTS: constructs a new empty list of notes
     public Notes() {
         listOfNotes = new ArrayList<>();
     }
@@ -35,26 +35,17 @@ public class Notes {
         listOfNotes.add(n);
     }
 
-
     //MODIFIES: this
     //EFFECTS: delete a note written on a given date. If no note was written on that date, do nothing.
-    public void deleteNote(Date d) {
-        Note currentNote;
-        for (int i = 0; i < listOfNotes.size(); i++) {
-            currentNote = listOfNotes.get(i);
-            if (currentNote.getDate() == d) {
-                listOfNotes.remove(currentNote);
-            }
-        }
-    }
+    //public void deleteNote(Date d) {}
 
     //MODIFIES: this
     //EFFECTS: orders the notes from most recently added to oldest.
-    public void orderNewestFirst() {}
+    //public void orderNewestFirst() {}
 
     //MODIFIES: this
     //EFFECTS: orders the notes from oldest to newest.
-    public void orderOldestFirst() {}
+    //public void orderOldestFirst() {}
 
 
 

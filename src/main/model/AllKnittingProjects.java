@@ -3,17 +3,29 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//This class stores all knitting projects in a list.
 public class AllKnittingProjects {
     private List<KnittingProject> allKnittingProjects;
 
+    //EFFECTS: Constructs a new empty list of all knitting projects
     public AllKnittingProjects() {
         this.allKnittingProjects = new ArrayList<>();
     }
 
-    //EFFECTS: list all knitting projects
+    //EFFECTS: get all knitting projects
     public List<KnittingProject> getAllKnittingProjects() {
         return this.allKnittingProjects;
     }
+
+    //MODIFIES: this
+    //EFFECTS: adds the given knitting project to the list of all knitting projects
+    public void addKnittingProject(KnittingProject projectToAdd) {
+        allKnittingProjects.add(projectToAdd);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: deletes the project that matches the given name. if no such project exists, do nothing.
+    //public void deleteKnittingProject(String name) {}
 
     //EFFECTS: returns the names of all knitting projects
     public List<String> listProjectNames() {
@@ -27,40 +39,24 @@ public class AllKnittingProjects {
         return allProjectNames;
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds the given knitting project to the list of all knitting projects
-    public void addKnittingProject(KnittingProject projectToAdd) {
-        allKnittingProjects.add(projectToAdd);
-    }
-
-    //MODIFIES: this
-    //EFFECTS: deletes the project that matches the given name. if no such project exists, do nothing.
-    public void deleteKnittingProject(String name) {
-        KnittingProject currentProject;
-        for (int i = 0; i < allKnittingProjects.size(); i++) {
-            currentProject = allKnittingProjects.get(i);
-            if (currentProject.getProjectName() == name) {
-                allKnittingProjects.remove(currentProject);
-            }
-        }
-    }
-
-    //SPECIFIES: allKnittingProjects should not be empty
+    //REQUIRES: allKnittingProjects should not be empty
     //EFFECTS: gets the project that matches the given name.
     // if no such project exists, return a dummy knitting project.
     public KnittingProject getKnittingProject(String name) {
         KnittingProject currentProject;
-        KnittingProject projectOfInterest = new KnittingProject("dummy");
-        for (int i = 0; i < allKnittingProjects.size(); i++) {
-            currentProject = allKnittingProjects.get(i);
-            if (currentProject.getProjectName() == name) {
-                projectOfInterest = currentProject;
+        KnittingProject dummyProject = new KnittingProject("dummy");
+        dummyProject.getYarns().add("dummy yarn");
+        dummyProject.getNeedles().add("dummy needles");
+        for (int i = 0; i < this.allKnittingProjects.size(); i++) {
+            currentProject = this.allKnittingProjects.get(i);
+            if (currentProject.getProjectName().equals(name)) {
+                return currentProject;
             }
         }
-        return projectOfInterest;
+        return dummyProject;
     }
 
     //MODIFIES: this
     //EFFECTS: orders all projects alphabetically
-    public void orderAlphabetically() {}
+    //public void orderAlphabetically() {}
 }

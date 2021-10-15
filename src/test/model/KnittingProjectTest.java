@@ -8,40 +8,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class KnittingProjectTest {
 
     private KnittingProject newKnittingProject;
-    private String projectName = "First Project";
 
     @BeforeEach
     public void runBefore() {
+        String projectName = "First Project";
         newKnittingProject = new KnittingProject(projectName);
     }
 
     @Test
-    public void addOneItem() {
-        newKnittingProject.addItem("Yarn 1", "Yarn");
+    public void nameInitiated() {
+        assertEquals("First Project", newKnittingProject.getProjectName());
+        assertEquals(0, newKnittingProject.getYarns().size());
+        assertEquals(0, newKnittingProject.getNeedles().size());
+        assertEquals(0 , newKnittingProject.getNotes().getNotes().size());
 
-        assertEquals("Yarn 1", newKnittingProject.getYarnName().get(0));
-        assertEquals(1, newKnittingProject.getYarnName().size());
-
-        newKnittingProject.addItem("Needle 1", "Needle");
-
-        assertEquals("Needle 1", newKnittingProject.getNeedleNames().get(0));
-        assertEquals(1, newKnittingProject.getNeedleNames().size());
     }
     @Test
-    public void addMultipleItems() {
-        newKnittingProject.addItem("Yarn 1", "Yarn");
-        newKnittingProject.addItem("Yarn 2", "Yarn");
-        newKnittingProject.addItem("Yarn 3", "Yarn");
-
-        assertEquals(3, newKnittingProject.getYarnName().size());
-        assertEquals("Yarn 3", newKnittingProject.getYarnName().get(2));
-
-        newKnittingProject.addItem("Needle 1", "Needle");
-        newKnittingProject.addItem("Needle 2", "Needle");
-        newKnittingProject.addItem("Needle 3", "Needle");
-
-        assertEquals(3, newKnittingProject.getNeedleNames().size());
-        assertEquals("Needle 3", newKnittingProject.getNeedleNames().get(2));
+    public void getOneNoteFromProject() {
+        Note oneNote = new Note();
+        oneNote.replaceBody("this is one note");
+        newKnittingProject.getNotes().addNote(oneNote);
+        assertEquals(1 , newKnittingProject.getNotes().getNotes().size());
+        assertEquals(oneNote, newKnittingProject.getNotes().getNotes().get(0));
 
     }
 

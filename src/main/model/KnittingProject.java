@@ -1,26 +1,23 @@
 package model;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
+//This class represents a knitting project. A project is identified by its project name.
+// The project can have associated supplies (like yarns and needles), or notes.
 public class KnittingProject {
-    // delete or rename this class!
 
     private String projectName;
-    private List<String> yarnNames;
-    private List<String> needleNames;
-    private List<Inspiration> inspiration;
-    private List<Swatch> swatch;
+    private Yarns yarns;
+    private Needles needles;
     private Notes notes;
 
-
+    //EFFECTS: Construct a new knitting project with the given name.
+    //The project will start with no yarns, needles, or notes.
     public KnittingProject(String newProjectName) {
         this.projectName = newProjectName;
-        this.yarnNames = new ArrayList<>();
-        this.needleNames = new ArrayList<>();
-        this.inspiration = new ArrayList<>();
-        this.swatch = new ArrayList<>();
+        this.yarns = new Yarns();
+        this.needles = new Needles();
         this.notes = new Notes();
     }
 
@@ -30,34 +27,19 @@ public class KnittingProject {
     }
 
     //EFFECTS: returns the names of all yarns
-    public List<String> getYarnName() {
-        return this.yarnNames;
+    public List<String> getYarns() {
+        return this.yarns.getSupplies();
     }
 
     //EFFECTS: returns the names of all needles
-    public List<String> getNeedleNames() {
-        return this.needleNames;
+    public List<String> getNeedles() {
+        return this.needles.getSupplies();
     }
 
     //EFFECTS: returns all notes
     public Notes getNotes() {
         return this.notes;
     }
-
-    //SPECIFIES: itemType must be "Yarn" or "Needle"
-    //MODIFIES: this
-    //EFFECTS: adds a new yarn or new needle to the appropriate field.
-    public void addItem(String newItemName, String itemType) {
-        if (itemType == "Yarn") {
-            this.yarnNames.add(newItemName);
-        } else if (itemType == "Needle") {
-            this.needleNames.add(newItemName);
-        }
-    }
-
-
-
-
 
 
 

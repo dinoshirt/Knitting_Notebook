@@ -2,13 +2,13 @@ package ui;
 
 import model.AllKnittingProjects;
 import model.KnittingProject;
+import model.*;
 
 import java.util.Scanner;
-//Code copied from TellerApp
+//Code adapted from TellerApp
 
 public class NotebookApp {
-    private KnittingProject knittingProject;
-    private AllKnittingProjects allKnittingProjects;
+    private AllKnittingProjects allCurrentKnittingProjects;
     private Scanner input;
 
     // EFFECTS: runs the notebook application
@@ -40,9 +40,9 @@ public class NotebookApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes accounts
+    // EFFECTS: initializes allKnittingProjects
     private void init() {
-        allKnittingProjects = new AllKnittingProjects();
+        allCurrentKnittingProjects = new AllKnittingProjects();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -77,7 +77,7 @@ public class NotebookApp {
         String projectName = input.next();
 
         KnittingProject newKnittingProject = new KnittingProject(projectName);
-        allKnittingProjects.addKnittingProject(newKnittingProject);
+        allCurrentKnittingProjects.addKnittingProject(newKnittingProject);
 
         System.out.println("The new knitting project named " + projectName + " was created");
 
@@ -87,7 +87,7 @@ public class NotebookApp {
     private void viewAllKnittingProjects() {
         System.out.print("Here is a list of all knitting projects: ");
 
-        System.out.print(allKnittingProjects.listProjectNames());
+        System.out.print(allCurrentKnittingProjects.listProjectNames());
 
     }
 
@@ -96,32 +96,109 @@ public class NotebookApp {
         System.out.println("\nSelect from:");
         System.out.println("\tyarn -> edit yarns");
         System.out.println("\tneedle -> edit needles");
-        System.out.println("\tnotes -> edit notes");
+        System.out.println("\tnote -> edit notes");
+    }
+
+    // EFFECTS: displays actions that the user can perform on the selected field
+    private void displayEditingOptions(String fieldSelected) {
+        if (fieldSelected.equals("yarn") || fieldSelected.equals("needle") || fieldSelected.equals("note")) {
+            System.out.println("\nSelect from:");
+            System.out.println("\ta -> add new " + fieldSelected);
+            System.out.println("\tr -> remove " + fieldSelected);
+        } else {
+            System.out.println("Selection not valid...");
+        }
     }
 
     // MODIFIES: this
-    // EFFECTS: creates a new named knitting project
+    // EFFECTS: processes user command about editing a field
+    private void processEditCommand(String command, String fieldChosen, KnittingProject projectChosen) {
+        if (command.equals("a")) {
+            addNewItem(fieldChosen, projectChosen);
+        } else if (command.equals("r")) {
+            removeItem(fieldChosen, projectChosen);
+        } else {
+            System.out.println("Selection not valid...");
+        }
+    }
+
+    //MODIFIES: projectChosen when yarn or needle is fieldChosen
+    //EFFECTS: removes a yarn or needle in the project. Will tell user that notes cannot be removed.
+    private void removeItem(String fieldChosen, KnittingProject projectChosen) {
+        System.out.println("Please input the name of the item you would like to remove: ");
+        String itemName = input.next();
+
+        if (fieldChosen.equals("yarn")) {
+            projectChosen.getYarns().remove(itemName);
+            System.out.println(projectChosen.getYarns());
+            System.out.println(itemName + " was removed!");
+        } else if (fieldChosen.equals("needle")) {
+            projectChosen.getNeedles().remove(itemName);
+            System.out.println(projectChosen.getNeedles());
+            System.out.println(itemName + " was removed!");
+        }
+        if (fieldChosen.equals("note")) {
+            System.out.println("can't remove notes right now, sorry! Will implement later.");
+        }
+    }
+
+    //MODIFIES: projectChosen
+    //EFFECTS: adds a new yarn, needle, or note to the project
+    private void addNewItem(String fieldChosen, KnittingProject projectChosen) {
+        System.out.println("Please input the name of the item you would like to add: ");
+        String itemName = input.next();
+
+        if (fieldChosen.equals("yarn")) {
+            projectChosen.getYarns().add(itemName);
+            System.out.println(projectChosen.getYarns());
+        } else if (fieldChosen.equals("needle")) {
+            projectChosen.getNeedles().add(itemName);
+            System.out.println(projectChosen.getNeedles());
+        } else if (fieldChosen.equals("note")) {
+            Note createdNote = new Note();
+            createdNote.addToBody(itemName);
+            projectChosen.getNotes().addNote(createdNote);
+            System.out.println(createdNote.getDateAndBody());
+        }
+        System.out.println(itemName + " was added!");
+
+    }
+
+    //EFFECTS: display the current yarn, needles, and notes in the project
+    private void displayProjectInfo(KnittingProject selectedProject) {
+        System.out.print("\n yarn:" + selectedProject.getYarns());
+        System.out.print("\n needles:" + selectedProject.getNeedles());
+        System.out.print("\n notes:" + selectedProject.getNotes().showAllNotes());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: edits a selected KnittingProject
     private void editKnittingProject() {
-        System.out.print("Please select from the following projects the project you would like to edit: ");
-        System.out.print(allKnittingProjects.listProjectNames() + " ");
+        System.out.print("\n Please select from the following projects the project you would like to edit: ");
+        System.out.print(allCurrentKnittingProjects.listProjectNames() + " ");
+        System.out.print("\n If you try to select a project that doesn't exist, a dummy project will be returned. ");
+
 
         String projectName = input.next();
         KnittingProject selectedProject;
 
-        selectedProject = allKnittingProjects.getKnittingProject("abc");
+        selectedProject = allCurrentKnittingProjects.getKnittingProject(projectName);
 
         System.out.print(selectedProject.getProjectName());
         System.out.println(" has been selected. This project has the following information: ");
-
-        System.out.print("\n yarn:" + selectedProject.getYarnName());
-        System.out.print("\n needles:" + selectedProject.getNeedleNames());
-        System.out.print("\n notes:" + selectedProject.getNotes().showAllNotes());
+        displayProjectInfo(selectedProject);
 
         System.out.print("\n what field would you like to edit?");
         displayFieldOptions();
 
         String fieldName = input.next();
 
+        System.out.print("\n You've chosen " + fieldName + ". What would you like to do?");
+        displayEditingOptions(fieldName);
+
+        String editAction = input.next();
+
+        processEditCommand(editAction, fieldName, selectedProject);
 
     }
 }
