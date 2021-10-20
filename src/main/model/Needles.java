@@ -8,6 +8,7 @@ public class Needles extends KnittingSupplies {
     //Note, if not straight then the needle is circular
     private boolean straightNeedle;
 
+    //EFFECTS: Constructs needles as an empty list
     public Needles() {
         super();
     }

@@ -20,6 +20,8 @@ I hope this virtual knitting notebook will solve many of these issues and encour
 - I want to view the title's of all the knitting projects I've created.
 - I want to add multiple new yarns, new needles, or new notes to a particular project.
 - I want to remove a specific yarn or needle from a particular project.
+- I want to be able to save everything I have added to the notebook.
+- I want to be able to load a previously saved notebook when I open the app.
 
 
 
