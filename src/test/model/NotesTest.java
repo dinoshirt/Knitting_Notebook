@@ -3,8 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NotesTest {
@@ -46,7 +44,7 @@ class NotesTest {
         Note firstNote;
         firstNote = testNotes.getNotes().get(0);
 
-        assertEquals(firstNote.getDateAndBody() + ";", gottenNotes);
+        assertEquals(firstNote.getDateTimeAndBody() + ";", gottenNotes);
     }
 
     @Test
@@ -63,7 +61,7 @@ class NotesTest {
         firstNote = testNotes.getNotes().get(0);
         secondNote = testNotes.getNotes().get(1);
 
-        assertEquals(firstNote.getDateAndBody() + ";" + secondNote.getDateAndBody() + ";", gottenNotes);
+        assertEquals(firstNote.getDateTimeAndBody() + ";" + secondNote.getDateTimeAndBody() + ";", gottenNotes);
     }
 
     @Test

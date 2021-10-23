@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,6 +32,13 @@ class KnittingProjectTest {
         assertEquals(1 , newKnittingProject.getNotes().getNotes().size());
         assertEquals(oneNote, newKnittingProject.getNotes().getNotes().get(0));
 
+    }
+
+    @Test
+    public JSONObject toJSONOneNote() {
+        getOneNoteFromProject();
+
+        return newKnittingProject.toJson();
     }
 
 }

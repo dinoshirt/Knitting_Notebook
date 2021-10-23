@@ -1,23 +1,33 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import static java.time.LocalDateTime.now;
+import static java.time.LocalDateTime.parse;
+
 
 //This represents a note used to document progress on a knitting project.
 // A note has the date created, and associated text that the user wants to write down.
 public class Note {
 
-    private final Date addDate;
+    private final LocalDateTime addDateAndTime;
     private String noteBody;
 
     //EFFECTS: Constructs a new empty Note. The date attached is the date the note is created.
     public Note() {
-        this.addDate = new Date();
+        this.addDateAndTime = now();
         this.noteBody = "";
     }
 
+    //EFFECTS: Alternate Constructor. Makes a new empty Note with the given ldt and body.
+    public Note(LocalDateTime ldt, String body) {
+        this.addDateAndTime = ldt;
+        this.noteBody = body;
+    }
+
     //EFFECTS: Returns the date the note was created
-    public Date getDate() {
-        return this.addDate;
+    public LocalDateTime getDateTime() {
+        return this.addDateAndTime;
     }
 
     //EFFECTS: Returns the body of the note
@@ -26,8 +36,8 @@ public class Note {
     }
 
     //EFFECTS: Returns the addDate, followed by the noteBody
-    public String getDateAndBody() {
-        return addDate + noteBody;
+    public String getDateTimeAndBody() {
+        return addDateAndTime + noteBody;
     }
 
     //MODIFIES: this

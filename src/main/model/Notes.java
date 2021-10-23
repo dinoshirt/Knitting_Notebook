@@ -1,5 +1,9 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 //This represents a list of notes, that may be associated with a knitting project.
@@ -19,7 +23,7 @@ public class Notes {
         for (int i = 0; i < listOfNotes.size(); i++) {
             currentNote = listOfNotes.get(i);
 
-            allNotes = allNotes + currentNote.getDateAndBody() + ';';
+            allNotes = allNotes + currentNote.getDateTimeAndBody() + ';';
         }
         return allNotes;
     }
@@ -33,6 +37,23 @@ public class Notes {
     //EFFECTS: adds a note to the back of the list
     public void addNote(Note n) {
         listOfNotes.add(n);
+    }
+
+    // EFFECTS: converts each note into a JSONObject, and returns all notes as a JSONArray
+    public JSONArray notesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json = new JSONObject();
+
+        for (int i = 0; i < this.getNotes().size(); i++) {
+            LocalDateTime noteDate = this.getNotes().get(i).getDateTime();
+            String stringDate = noteDate.toString();
+            json.put("date and time", stringDate);
+            json.put("body", this.getNotes().get(i).getBody());
+
+            jsonArray.put(json);
+        }
+
+        return jsonArray;
     }
 
     //MODIFIES: this

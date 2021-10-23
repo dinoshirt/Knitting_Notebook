@@ -188,7 +188,7 @@ public class NotebookApp {
             Note createdNote = new Note();
             createdNote.addToBody(itemName);
             projectChosen.getNotes().addNote(createdNote);
-            System.out.println(createdNote.getDateAndBody());
+            System.out.println(createdNote.getDateTimeAndBody());
         }
         System.out.println("new " + fieldChosen + " was added!");
 

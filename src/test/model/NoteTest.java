@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NoteTest {
@@ -18,7 +20,7 @@ class NoteTest {
     @Test
     public void makeDateAndBody() {
         testNote.addToBody("new stuff");
-        assertEquals(testNote.getDate().toString() + ": new stuff", testNote.getDateAndBody());
+        assertEquals(testNote.getDateTime().toString() + ": new stuff", testNote.getDateTimeAndBody());
     }
 
     @Test
@@ -49,6 +51,14 @@ class NoteTest {
         testNote.replaceBody("newer text");
         assertEquals("newer text", testNote.getBody());
     }
+
+//    @Test
+//    public void getDateforTesting() {
+//        String gottenString = testNote.noteDateToString();
+//        assertEquals("what", gottenString);
+//    }
+
+
 
 
 }

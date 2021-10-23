@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //This class stores all knitting projects in a list.
-public class AllKnittingProjects {
+public class AllKnittingProjects implements Writable {
     private List<KnittingProject> allKnittingProjects;
 
     //EFFECTS: Constructs a new empty list of all knitting projects
@@ -54,6 +58,24 @@ public class AllKnittingProjects {
             }
         }
         return dummyProject;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("all projects", allKnittingProjectsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns all knitting projects in this notebook as a JSON array
+    private JSONArray allKnittingProjectsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (KnittingProject kp : allKnittingProjects) {
+            jsonArray.put(kp.toJson());
+        }
+
+        return jsonArray;
     }
 
     //MODIFIES: this

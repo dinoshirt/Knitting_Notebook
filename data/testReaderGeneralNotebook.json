@@ -1,0 +1,30 @@
+{
+    "all projects": [
+        {
+            "project name": "Proj1",
+            "yarns": ["blue"],
+            "needles": ["10mm"],
+            "notes": [
+              {
+                "date and time": "2021-10-10T10:10:10.100",
+                "body": "Today I did this."
+              }
+            ]
+        },
+        {
+          "project name": "Proj2",
+          "yarns": ["blue", "yellow"],
+          "needles": ["10mm", "11mm"],
+          "notes": [
+            {
+              "date and time": "2021-10-10T10:10:10.100",
+              "body": "Today I did this."
+            },
+            {
+              "date and time": "2021-10-23T15:07:46.316",
+              "body": "Then today I did this."
+            }
+          ]
+        }
+    ]
+}
