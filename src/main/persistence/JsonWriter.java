@@ -8,6 +8,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // Represents a writer that writes JSON representation of all knitting projects to file
+// This class references code from here: CPSC210/JsonSerializationDemo
+// Link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+// This class references a library from here: stleary/JSON-java
+// Link: https://github.com/stleary/JSON-java
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -26,7 +30,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of notebook to file
     public void write(AllKnittingProjects akp) {
         JSONObject json = akp.toJson();
         saveToFile(json.toString(TAB));

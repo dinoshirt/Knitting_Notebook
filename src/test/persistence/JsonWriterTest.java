@@ -11,10 +11,11 @@ import static java.time.LocalDateTime.parse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// This class references code from here: CPSC210/JsonSerializationDemo
+// Link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 class JsonWriterTest extends JsonTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
+
 
     @Test
     void testWriterInvalidFile() {
@@ -29,7 +30,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyNotebook() {
         try {
             AllKnittingProjects akp = new AllKnittingProjects();
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyNotebook.json");
@@ -46,7 +47,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralNotebook() {
         try {
             AllKnittingProjects akp = new AllKnittingProjects();
             KnittingProject kp = new KnittingProject("My first project");

@@ -15,6 +15,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+// This class references code from here: CPSC210/JsonSerializationDemo
+// Link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 class JsonReaderTest extends JsonTest {
 
     @Test
@@ -29,7 +32,7 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyNotebook() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyNotebook.json");
         try {
             AllKnittingProjects akp = reader.read();

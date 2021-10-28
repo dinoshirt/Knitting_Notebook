@@ -3,15 +3,23 @@ package ui;
 import model.AllKnittingProjects;
 import model.KnittingProject;
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 // This class describes the console ui that the user can use on knitting projects
-// This class references code from here: CPSC210/TellerApp
+// This class references code from here: CPSC210/TellerApp and CPSC210/JsonSerializationDemo
 // Link: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+// Link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 public class NotebookApp {
+    private static final String JSON_STORE = "./data/notebook.json";
     private AllKnittingProjects allCurrentKnittingProjects;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the notebook application
     public NotebookApp() {
@@ -47,6 +55,8 @@ public class NotebookApp {
         allCurrentKnittingProjects = new AllKnittingProjects();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: displays main menu of options to user
@@ -55,6 +65,8 @@ public class NotebookApp {
         System.out.println("\tc -> create new knitting project");
         System.out.println("\tv -> view all knitting projects");
         System.out.println("\te -> edit an existing knitting project");
+        System.out.println("\ts -> save projects to file");
+        System.out.println("\tl -> load projects from file");
         System.out.println("\tq -> quit");
     }
 
@@ -67,8 +79,35 @@ public class NotebookApp {
             viewAllKnittingProjects();
         } else if (command.equals("e")) {
             editKnittingProject();
+        } else if (command.equals("s")) {
+            saveNotebook();
+        } else if (command.equals("l")) {
+            loadNotebook();
         } else {
             System.out.println("Selection not valid...");
+        }
+    }
+
+    // EFFECTS: saves all projects in the notebook to file
+    private void saveNotebook() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(allCurrentKnittingProjects);
+            jsonWriter.close();
+            System.out.println("Saved " + allCurrentKnittingProjects.listProjectNames() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads notebook (and all projects within it) from file
+    private void loadNotebook() {
+        try {
+            allCurrentKnittingProjects = jsonReader.read();
+            System.out.println("Loaded " + allCurrentKnittingProjects.listProjectNames() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

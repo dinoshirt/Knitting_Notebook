@@ -7,6 +7,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// This class references code from here: CPSC210/JsonSerializationDemo
+// Link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 public class JsonTest {
     protected void checkKnittingProject(String name, List<String> yarns, List<String> needles, KnittingProject kp) {
         assertEquals(name, kp.getProjectName());

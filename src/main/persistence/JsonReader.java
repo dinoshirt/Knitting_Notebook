@@ -14,6 +14,10 @@ import java.util.Locale;
 import java.util.stream.Stream;
 
 // Represents a reader that reads workroom from JSON data stored in file
+// This class references code from here: CPSC210/JsonSerializationDemo
+// Link: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+// This class references a library from here: stleary/JSON-java
+// Link: https://github.com/stleary/JSON-java
 public class JsonReader {
     private String source;
 
@@ -22,7 +26,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads notebook from file and returns it;
     // throws IOException if an error occurs reading data from file
     public AllKnittingProjects read() throws IOException {
         String jsonData = readFile(source);
@@ -63,7 +67,6 @@ public class JsonReader {
     // EFFECTS: parses knitting project from JSON object and adds it to all knitting projects
     private void addKnittingProject(AllKnittingProjects akp, JSONObject jsonObject) {
         String name = jsonObject.getString("project name");
-        jsonObject.getJSONArray("yarns").getString(0);
 
         KnittingProject kp = new KnittingProject(name);
         parseYarnsAndAdd(kp, jsonObject);

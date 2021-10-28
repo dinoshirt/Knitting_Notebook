@@ -60,6 +60,7 @@ public class AllKnittingProjects implements Writable {
         return dummyProject;
     }
 
+    //EFFECTS: returns the notebook (contianing all projects) as a JSONObject
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
