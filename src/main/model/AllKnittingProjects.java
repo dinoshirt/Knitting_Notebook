@@ -6,6 +6,7 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
+// TODO: Add tests for remove function
 
 //This class stores all knitting projects in a list.
 public class AllKnittingProjects implements Writable {
@@ -26,6 +27,13 @@ public class AllKnittingProjects implements Writable {
     public void addKnittingProject(KnittingProject projectToAdd) {
         allKnittingProjects.add(projectToAdd);
     }
+
+    //MODIFIES: this
+    //EFFECTS: deletes the given knitting project from the list of all knitting projects
+    public void deleteKnittingProject(KnittingProject projectToDelete) {
+        allKnittingProjects.remove(projectToDelete);
+    }
+
 
     //MODIFIES: this
     //EFFECTS: deletes the project that matches the given name. if no such project exists, do nothing.
