@@ -1,24 +1,14 @@
 {"all projects": [
     {
-        "needles": ["10mm"],
-        "notes": [{
-            "date and time": "2021-11-01T13:24:04.443",
-            "body": ": today ..."
-        }],
-        "project name": "making hat",
-        "yarns": [
-            "blue yarn",
-            "yellow",
-            "brown"
-        ]
+        "needles": [],
+        "notes": [],
+        "project name": "test project",
+        "yarns": []
     },
     {
-        "needles": ["11mm"],
-        "notes": [{
-            "date and time": "2021-11-01T13:27:35.387",
-            "body": ": blah"
-        }],
-        "project name": "second project",
+        "needles": [],
+        "notes": [],
+        "project name": "asdf",
         "yarns": []
     }
 ]}

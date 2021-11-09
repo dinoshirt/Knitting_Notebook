@@ -26,8 +26,6 @@ public class ListGui extends JPanel
     private JTextField projectName;
 
     private static final String JSON_STORE = "./data/notebook.json";
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
 
     private DefaultListModel projectNameList;
 
@@ -47,8 +45,7 @@ public class ListGui extends JPanel
         projectName = new JTextField(10);
         currentProjects = new AllKnittingProjects();
         currentProjects.addKnittingProject(new KnittingProject("test project"));
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+
     }
 
     public JScrollPane initializeList() {
@@ -79,10 +76,10 @@ public class ListGui extends JPanel
 
     public JButton makeSaveButton() {
         JButton saveButton = new JButton(saveString);
-        //AddListener addListener = new AddListener(addButton);
+        SaveListener saveListener = new SaveListener(saveButton, this);
         saveButton.setActionCommand(saveString);
-        //addButton.addActionListener(addListener);
-        saveButton.setEnabled(false);
+        saveButton.addActionListener(saveListener);
+        saveButton.setEnabled(true);
         return saveButton;
     }
 
@@ -91,7 +88,7 @@ public class ListGui extends JPanel
         //AddListener addListener = new AddListener(addButton);
         saveButton.setActionCommand(loadString);
         //addButton.addActionListener(addListener);
-        saveButton.setEnabled(false);
+        saveButton.setEnabled(true);
         return saveButton;
     }
 
