@@ -21,15 +21,30 @@ public class ListGui extends JPanel
     protected AllKnittingProjects currentProjects;
 
     private static final String addString = "Add New Project";
+    private static final String saveString = "Save Notebook";
+    private static final String loadString = "Load Notebook";
     private JTextField projectName;
 
     private static final String JSON_STORE = "./data/notebook.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    private DefaultListModel listModel;
+    private DefaultListModel projectNameList;
+
+    public JTextField getProjectName() {
+        return projectName;
+    }
+
+    public AllKnittingProjects getCurrentProjects() {
+        return currentProjects;
+    }
+
+    public DefaultListModel getProjectNameList() {
+        return projectNameList;
+    }
 
     public void initializeFields() {
+        projectName = new JTextField(10);
         currentProjects = new AllKnittingProjects();
         currentProjects.addKnittingProject(new KnittingProject("test project"));
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -38,9 +53,9 @@ public class ListGui extends JPanel
 
     public JScrollPane initializeList() {
         //Create the list and put it in a scroll pane.
-        listModel = new DefaultListModel();
-        listModel.addElement("test project");
-        list = new JList(listModel);
+        projectNameList = new DefaultListModel();
+        projectNameList.addElement("test project");
+        list = new JList(projectNameList);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setSelectedIndex(0);
         list.addListSelectionListener(this);
@@ -49,28 +64,53 @@ public class ListGui extends JPanel
         return listScrollPane;
     }
 
-    public JPanel initializeButtons() {
+    public JButton makeAddButtonAndText() {
         JButton addButton = new JButton(addString);
-        AddListener addListener = new AddListener(addButton);
+        AddListener addListener = new AddListener(addButton, this);
         addButton.setActionCommand(addString);
         addButton.addActionListener(addListener);
         addButton.setEnabled(false);
 
-        projectName = new JTextField(10);
         projectName.addActionListener(addListener);
         projectName.getDocument().addDocumentListener(addListener);
 
+        return addButton;
+    }
+
+    public JButton makeSaveButton() {
+        JButton saveButton = new JButton(saveString);
+        //AddListener addListener = new AddListener(addButton);
+        saveButton.setActionCommand(saveString);
+        //addButton.addActionListener(addListener);
+        saveButton.setEnabled(false);
+        return saveButton;
+    }
+
+    public JButton makeLoadButton() {
+        JButton saveButton = new JButton(loadString);
+        //AddListener addListener = new AddListener(addButton);
+        saveButton.setActionCommand(loadString);
+        //addButton.addActionListener(addListener);
+        saveButton.setEnabled(false);
+        return saveButton;
+    }
+
+    public JPanel initializeButtonsAndTextFields() {
+        JButton addButton = makeAddButtonAndText();
+        JButton saveButton = makeSaveButton();
+        JButton loadButton = makeLoadButton();
 
         //Create a panel that uses BoxLayout.
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane,
                 BoxLayout.LINE_AXIS));
         buttonPane.add(addButton);
+        buttonPane.add(projectName);
         buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
         buttonPane.add(Box.createHorizontalStrut(5));
-        buttonPane.add(projectName);
-        //buttonPane.add(hireButton);
+        buttonPane.add(saveButton);
+        buttonPane.add(loadButton);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         return buttonPane;
     }
@@ -81,7 +121,7 @@ public class ListGui extends JPanel
         initializeList();
 
         add(initializeList(), BorderLayout.CENTER);
-        add(initializeButtons(), BorderLayout.PAGE_END);
+        add(initializeButtonsAndTextFields(), BorderLayout.PAGE_END);
     }
 
     @Override
@@ -99,64 +139,6 @@ public class ListGui extends JPanel
         }
     }
 
-    //This listener is shared by the text field and the hire button.
-    class AddListener implements ActionListener, DocumentListener {
-        private boolean alreadyEnabled = false;
-        private JButton button;
 
-        public AddListener(JButton button) {
-            this.button = button;
-        }
-
-        //Required by ActionListener.
-        public void actionPerformed(ActionEvent e) {
-            String name = projectName.getText();
-            KnittingProject addedProject = new KnittingProject(name);
-            currentProjects.addKnittingProject(addedProject);
-            listModel.addElement(name);
-
-            //int index = currentProjects.getAllKnittingProjects().size() - 1;
-
-            //Reset the text field.
-            projectName.requestFocusInWindow();
-            projectName.setText("");
-
-            //Select the new item and make it visible.
-            //list.setSelectedIndex(index);
-            //list.ensureIndexIsVisible(index);
-        }
-
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            enableButton();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-
-        }
-
-        //Required by DocumentListener.
-        public void changedUpdate(DocumentEvent e) {
-            if (!handleEmptyTextField(e)) {
-                enableButton();
-            }
-        }
-
-        private void enableButton() {
-            if (!alreadyEnabled) {
-                button.setEnabled(true);
-            }
-        }
-
-        private boolean handleEmptyTextField(DocumentEvent e) {
-            if (e.getDocument().getLength() <= 0) {
-                button.setEnabled(false);
-                alreadyEnabled = false;
-                return true;
-            }
-            return false;
-        }
-    }
 
 }
