@@ -25,7 +25,7 @@ public class ListGui extends JPanel
     private static final String loadString = "Load Notebook";
     private JTextField projectName;
 
-    private static final String JSON_STORE = "./data/notebook.json";
+    //private static final String JSON_STORE = "./data/notebook.json";
 
     private DefaultListModel projectNameList;
 
@@ -84,12 +84,12 @@ public class ListGui extends JPanel
     }
 
     public JButton makeLoadButton() {
-        JButton saveButton = new JButton(loadString);
-        //AddListener addListener = new AddListener(addButton);
-        saveButton.setActionCommand(loadString);
-        //addButton.addActionListener(addListener);
-        saveButton.setEnabled(true);
-        return saveButton;
+        JButton loadButton = new JButton(loadString);
+        LoadListener loadListener = new LoadListener(loadButton, this);
+        loadButton.setActionCommand(loadString);
+        loadButton.addActionListener(loadListener);
+        loadButton.setEnabled(true);
+        return loadButton;
     }
 
     public JPanel initializeButtonsAndTextFields() {
@@ -114,6 +114,8 @@ public class ListGui extends JPanel
 
     public ListGui() {
         super(new BorderLayout());
+
+
         initializeFields();
         initializeList();
 
@@ -121,21 +123,21 @@ public class ListGui extends JPanel
         add(initializeButtonsAndTextFields(), BorderLayout.PAGE_END);
     }
 
-    @Override
     public void valueChanged(ListSelectionEvent e) {
-        if (e.getValueIsAdjusting() == false) {
+        //ListSelectionModel lsm = (ListSelectionModel) list.getSelectionModel();
 
-            if (list.getSelectedIndex() == -1) {
-                //No selection, disable fire button.
-                //addButton.setEnabled(false);
+//        // Find out which indexes are selected.
+//        int minIndex = lsm.getMinSelectionIndex();
+//        int maxIndex = lsm.getMaxSelectionIndex();
+//        for (int i = minIndex; i <= maxIndex; i++) {
+//            if (lsm.isSelectedIndex(i)) {
+//                System.out.println(i);
+//
+//            }
+//        }
 
-            } else {
-                //Selection, enable the fire button.
-                //addButton.setEnabled(true);
-            }
-        }
+        System.out.println(list.getSelectedValue());
     }
-
 
 
 }
