@@ -117,7 +117,7 @@ public class ListGui extends JPanel
 
 
         initializeFields();
-        initializeList();
+        //initializeList();
 
         add(initializeList(), BorderLayout.CENTER);
         add(initializeButtonsAndTextFields(), BorderLayout.PAGE_END);
@@ -136,7 +136,11 @@ public class ListGui extends JPanel
 //            }
 //        }
 
-        System.out.println(list.getSelectedValue());
+        String nameOfSelectedProject = (String) list.getSelectedValue();
+
+        KnittingProject selectedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
+
+        //System.out.println(selectedProject.getNeedles());
     }
 
 
