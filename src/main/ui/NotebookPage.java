@@ -14,79 +14,69 @@ import java.util.List;
 public class NotebookPage extends JPanel
         implements ListSelectionListener {
 
-    private String projectName;
-    private List<String> yarns;
-    private List<String> needles;
-    private Notes notes;
+    private JList projectJList;
+    private String nameOfSelectedProject;
+    private AllKnittingProjects currentProjects;
+    private KnittingProject project;
+    private ListGui projectPanel;
 
-    private DefaultListModel yarnList;
-    private DefaultListModel needleList;
-    private DefaultListModel noteList;
-
-    private JList yarnJList;
-    private JList needleJList;
-    private JList noteJList;
-
-    private JScrollPane yarnScrollPane;
-    private JScrollPane needleScrollPane;
+    private JPanel panelRight;
+    private JPanel panelMiddle;
+    private JPanel panelLeft;
 
 
-    public void initializeFields(KnittingProject project) {
-        projectName = project.getProjectName();
-        yarns = project.getYarns();
-        needles = project.getNeedles();
-        notes = project.getNotes();
+    public NotebookPage() {
+        ListGui projectPanel = new ListGui();
+        KnittingProject startProject = projectPanel.getCurrentProjects().getAllKnittingProjects().get(0);
 
-    }
+//        JPanel panelRight = new NotePanel(indexedProject);
+//        JPanel panelMiddle = new NeedlePanel(indexedProject);
+//        JPanel panelLeft = new YarnPanel(indexedProject);
 
-    public void initializeNeedleList() {
-        //Create the list and put it in a scroll pane.
-        needleList = new DefaultListModel();
-        needleList.addElement("test needle");
-
-        needleJList = new JList(needleList);
-        needleJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        needleJList.setSelectedIndex(0);
-        needleJList.addListSelectionListener(this);
-        needleJList.setVisibleRowCount(3);
-
-        needleScrollPane = new JScrollPane(needleJList);
-    }
-
-
-
-    public NotebookPage(KnittingProject project) {
-        initializeFields(project);
-        initializeNeedleList();
 
         JSplitPane splitPaneOne;
         JSplitPane splitPaneTwo;
+        JSplitPane splitPaneThree;
 
-        YarnPanel yarnPanel = new YarnPanel(project);
-        NeedlePanel needlePanel = new NeedlePanel(project);
-        NotePanel notePanel = new NotePanel(project);
+        //String nameOfSelectedProject = (String) list.getSelectedValue();
 
         splitPaneOne = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-                yarnPanel, needlePanel);
-        splitPaneTwo = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitPaneOne, notePanel);
+                projectPanel.getPanelLeft(), projectPanel.getPanelMiddle());
+        splitPaneTwo = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitPaneOne, projectPanel.getPanelRight());
+        splitPaneThree = new JSplitPane(JSplitPane.VERTICAL_SPLIT, projectPanel, splitPaneTwo);
         splitPaneOne.setOneTouchExpandable(true);
         //splitPane.setDividerLocation(150);
 
-        //Provide minimum sizes for the two components in the split pane
+
+        //Provide minimum sizes for the components in the split pane
         Dimension minimumSize = new Dimension(400, 100);
-        yarnPanel.setPreferredSize(minimumSize);
-        needlePanel.setPreferredSize(minimumSize);
-        notePanel.setPreferredSize(minimumSize);
+        projectPanel.getPanelLeft().setPreferredSize(minimumSize);
+        projectPanel.getPanelMiddle().setPreferredSize(minimumSize);
+        projectPanel.getPanelRight().setPreferredSize(minimumSize);
+        projectPanel.setPreferredSize(minimumSize);
 
-        add(splitPaneTwo, BorderLayout.CENTER);
-
-
-
+        add(splitPaneThree, BorderLayout.CENTER);
 
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
+//        JList list = (JList)e.getSource();
+//        int index = list.getSelectedIndex();
+//        KnittingProject indexedProject = projectPanel.getCurrentProjects().getAllKnittingProjects().get(index);
+//        System.out.println(indexedProject.getProjectName());
+//        YarnPanel yarnPanel = new YarnPanel(indexedProject);
+//        NeedlePanel needlePanel = new NeedlePanel(indexedProject);
+//        NotePanel notePanel = new NotePanel(indexedProject);
+//
+//        panelLeft.revalidate();
+//        panelLeft.repaint();
+//        panelLeft.add(yarnPanel);
+//
+//
+//        panelMiddle.add(needlePanel);
+//        panelRight.add(notePanel);
+
 
     }
 

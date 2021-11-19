@@ -96,6 +96,10 @@ public class NeedlePanel extends JPanel
         needleList = new DefaultListModel();
         needleList.addElement("test needle");
 
+        for (String n : needles) {
+            needleList.addElement(n);
+        }
+
         needleJList = new JList(needleList);
         needleJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         needleJList.setSelectedIndex(0);

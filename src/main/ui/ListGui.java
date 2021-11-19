@@ -21,12 +21,24 @@ public class ListGui extends JPanel
     private static final String loadString = "Load Notebook";
     private JTextField projectName;
 
-    //private static final String JSON_STORE = "./data/notebook.json";
-
     private DefaultListModel projectNameList;
+
+    private JPanel projectPage;
+
+    private JPanel panelRight;
+    private JPanel panelMiddle;
+    private YarnPanel panelLeft;
 
     public JTextField getProjectName() {
         return projectName;
+    }
+
+    public JPanel getProjectPage() {
+        return this.projectPage;
+    }
+
+    public JList getProjectJList() {
+        return this.list;
     }
 
     public AllKnittingProjects getCurrentProjects() {
@@ -40,7 +52,10 @@ public class ListGui extends JPanel
     public void initializeFields() {
         projectName = new JTextField(10);
         currentProjects = new AllKnittingProjects();
-        currentProjects.addKnittingProject(new KnittingProject("test project"));
+
+        KnittingProject testProject = new KnittingProject("test project");
+        currentProjects.addKnittingProject(testProject);
+        projectPage = new JPanel();
 
     }
 
@@ -108,34 +123,77 @@ public class ListGui extends JPanel
         return buttonPane;
     }
 
+    public void projectPanel() {
+
+    }
+
+
     public ListGui() {
         super(new BorderLayout());
 
-
         initializeFields();
         //initializeList();
+        KnittingProject firstProject = currentProjects.getAllKnittingProjects().get(0);
+        panelRight = new NotePanel(firstProject);
+        panelMiddle = new NeedlePanel(firstProject);
+        panelLeft = new YarnPanel(firstProject);
 
         add(initializeList(), BorderLayout.CENTER);
         add(initializeButtonsAndTextFields(), BorderLayout.PAGE_END);
     }
 
+    public JPanel getPanelRight() {
+        return this.panelRight;
+    }
+
+    public JPanel getPanelMiddle() {
+        return this.panelMiddle;
+    }
+
+    public JPanel getPanelLeft() {
+        return this.panelLeft;
+    }
+
+    public void resetCurrentProjects(AllKnittingProjects loadedProjects) {
+        this.currentProjects = loadedProjects;
+    }
+
     public void valueChanged(ListSelectionEvent e) {
+//        JList list = (JList)e.getSource();
+//        int index = list.getSelectedIndex();
+//        KnittingProject indexedProject = currentProjects.getAllKnittingProjects().get(index);
+        String nameOfSelectedProject = (String) list.getSelectedValue();
+        System.out.println(currentProjects.listProjectNames());
+        KnittingProject indexedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
+        //System.out.println(indexedProject.getProjectName());
+
+        panelRight.removeAll();
+//        panelRight.revalidate();
+//        panelRight.repaint();
+        panelLeft.resetYarnFields(indexedProject);
+//        panelLeft.revalidate();
+//        panelLeft.repaint();
+        panelMiddle.removeAll();
+//        panelMiddle.revalidate();
+//        panelMiddle.repaint();
+
+
+//        panelRight = new NotePanel(indexedProject);
+//        panelMiddle = new NeedlePanel(indexedProject);
+//        panelLeft = new YarnPanel(indexedProject);
+
+        //String nameOfSelectedProject = (String) list.getSelectedValue();
+
+        //KnittingProject selectedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
+
         //ListSelectionModel lsm = (ListSelectionModel) list.getSelectionModel();
 
-//        // Find out which indexes are selected.
-//        int minIndex = lsm.getMinSelectionIndex();
-//        int maxIndex = lsm.getMaxSelectionIndex();
-//        for (int i = minIndex; i <= maxIndex; i++) {
-//            if (lsm.isSelectedIndex(i)) {
-//                System.out.println(i);
-//
-//            }
-//        }
 
-        String nameOfSelectedProject = (String) list.getSelectedValue();
+        //String nameOfSelectedProject = (String) list.getSelectedValue();
 
-        KnittingProject selectedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
-
+        //KnittingProject selectedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
+        //System.out.println(nameOfSelectedProject);
+        //projectPage = new NotebookPage(selectedProject);
         //System.out.println(selectedProject.getNeedles());
     }
 

@@ -34,6 +34,8 @@ class LoadListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             currentProjects = jsonReader.read();
+            listGui.resetCurrentProjects(currentProjects);
+
             for (KnittingProject kp: currentProjects.getAllKnittingProjects()) {
                 if (!projectNameList.contains(kp.getProjectName())) {
                     projectNameList.addElement(kp.getProjectName());

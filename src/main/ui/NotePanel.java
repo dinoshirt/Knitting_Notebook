@@ -87,6 +87,10 @@ public class NotePanel extends JPanel
         testNote.addToBody("test note");
         notesList.addElement(testNote.getDateTimeAndBody());
 
+        for (Note n : notes.getNotes()) {
+            notesList.addElement(n.getDateTimeAndBody());
+        }
+
         noteJList = new JList(notesList);
         noteJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         noteJList.setSelectedIndex(0);

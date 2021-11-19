@@ -8,7 +8,16 @@
     {
         "needles": [],
         "notes": [],
-        "project name": "asdfasdf",
-        "yarns": []
+        "project name": "a",
+        "yarns": [
+            "a",
+            "a"
+        ]
+    },
+    {
+        "needles": [],
+        "notes": [],
+        "project name": "v",
+        "yarns": ["v"]
     }
 ]}

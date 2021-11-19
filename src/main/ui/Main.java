@@ -42,27 +42,27 @@ public class Main {
 //    }
 
     private static void createAndShowGUI() {
-        JPanel overallPane = new JPanel();
-        JPanel comboBoxPane = new JPanel(); //use FlowLayout
-
-        String[] comboBoxItems = {"All Projects", "Project Info"};
-        JComboBox cb = new JComboBox(comboBoxItems);
-        cb.setEditable(false);
-
-        comboBoxPane.add(cb);
-
-        CardMaker createdCards = new CardMaker();
-        cb.addItemListener(new ComboSelectListener(cb, createdCards));
-
-        overallPane.add(comboBoxPane, BorderLayout.PAGE_START);
-        overallPane.add(createdCards.getCards(), BorderLayout.CENTER);
+//        JPanel overallPane = new JPanel();
+//        JPanel comboBoxPane = new JPanel(); //use FlowLayout
+//
+//        String[] comboBoxItems = {"All Projects", "Project Info"};
+//        JComboBox cb = new JComboBox(comboBoxItems);
+//        cb.setEditable(false);
+//
+//        comboBoxPane.add(cb);
+//
+//        CardMaker createdCards = new CardMaker();
+//        cb.addItemListener(new ComboSelectListener(cb, createdCards));
+//
+//        overallPane.add(comboBoxPane, BorderLayout.PAGE_START);
+//        overallPane.add(createdCards.getCards(), BorderLayout.CENTER);
 
                 //Create and set up the window.
-        JFrame frame = new JFrame("ListDemo");
+        JFrame frame = new JFrame("My Knitting Notebook");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
-        JComponent newContentPane = overallPane;
+        JComponent newContentPane = new NotebookPage();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 

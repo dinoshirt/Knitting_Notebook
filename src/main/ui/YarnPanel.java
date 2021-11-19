@@ -15,10 +15,12 @@ public class YarnPanel extends JPanel
     private JList yarnJList;
     private JScrollPane yarnScrollPane;
     private JTextField yarnInput;
+    private JButton addButton;
     private static final String addString = "Add New Yarn";
     private static final String removeString = "Remove Yarn";
 
     private JButton removeButton;
+    private AddYarnListener addYarnListener;
 
     public List<String> getYarns() {
         return this.yarns;
@@ -43,9 +45,29 @@ public class YarnPanel extends JPanel
         add(initializeButtonsAndTextFields(kp), BorderLayout.PAGE_END);
     }
 
+    public void resetYarnFields(KnittingProject kp) {
+        this.yarns = kp.getYarns();
+
+        yarnList.removeAllElements();
+        for (String y : yarns) {
+            yarnList.addElement(y);
+        }
+
+        addButton.removeActionListener(addYarnListener);
+        yarnInput.removeActionListener(addYarnListener);
+        yarnInput.getDocument().removeDocumentListener(addYarnListener);
+
+        addYarnListener = new AddYarnListener(addButton, this, kp);
+
+        addButton.addActionListener(addYarnListener);
+        yarnInput.addActionListener(addYarnListener);
+        yarnInput.getDocument().addDocumentListener(addYarnListener);
+
+    }
+
     public JButton makeAddButtonAndText(KnittingProject kp) {
-        JButton addButton = new JButton(addString);
-        AddYarnListener addYarnListener = new AddYarnListener(addButton, this, kp);
+        addButton = new JButton(addString);
+        addYarnListener = new AddYarnListener(addButton, this, kp);
         addButton.setActionCommand(addString);
         addButton.addActionListener(addYarnListener);
         addButton.setEnabled(false);
@@ -92,6 +114,10 @@ public class YarnPanel extends JPanel
         //Create the list and put it in a scroll pane.
         yarnList = new DefaultListModel();
         yarnList.addElement("test yarn");
+
+        for (String y : yarns) {
+            yarnList.addElement(y);
+        }
 
         yarnJList = new JList(yarnList);
         yarnJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

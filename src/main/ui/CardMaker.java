@@ -4,6 +4,7 @@ import model.KnittingProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class CardMaker extends JPanel {
 
@@ -13,8 +14,9 @@ public class CardMaker extends JPanel {
 
     public CardMaker() {
         KnittingProject testkp = new KnittingProject("test delete later");
-        JPanel card1 = new ListGui();
-        JPanel card2 = new NotebookPage(testkp);
+        ListGui listGui = new ListGui();
+        JPanel card1 = listGui;
+        JPanel card2 = listGui.getProjectPage();
 
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
