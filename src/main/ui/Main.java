@@ -1,10 +1,13 @@
 package ui;
 
-import model.KnittingProject;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 // This class runs the notebook application so it has a GUI
 // This class references code from here: ListDemo.java
@@ -18,16 +21,22 @@ public class Main {
         //new NotebookApp();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+                try {
+                    createAndShowGUI();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
     }
 
     // EFFECTS: Displays a new NotebookPage in a JFrame
-    private static void createAndShowGUI() {
+    private static void createAndShowGUI() throws IOException {
                 //Create and set up the window.
+
         JFrame frame = new JFrame("My Knitting Notebook");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.

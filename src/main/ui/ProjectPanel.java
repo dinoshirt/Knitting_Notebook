@@ -4,6 +4,7 @@ import model.AllKnittingProjects;
 import model.KnittingProject;
 
 import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -75,7 +76,14 @@ public class ProjectPanel extends JPanel
     // EFFECTS: Returns an add project button and adds a AddProjectListener to it.
     //          also adds AddProjectListener to projectName.
     public JButton makeAddButtonAndText() {
+        //ImageIcon bookImage = new ImageIcon("book.png");
         JButton addButton = new JButton(addString);
+        try {
+            ImageIcon img = new ImageIcon("data/smallbook.png");
+            addButton.setIcon(img);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         AddProjectListener addProjectListener = new AddProjectListener(addButton, this);
         addButton.setActionCommand(addString);
         addButton.addActionListener(addProjectListener);

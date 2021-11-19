@@ -6,12 +6,12 @@
         "yarns": []
     },
     {
-        "needles": ["a"],
+        "needles": [],
         "notes": [{
-            "date and time": "2021-11-19T02:00:20.222",
-            "body": ": a"
+            "date and time": "2021-11-19T14:08:11.377",
+            "body": ": sdfsdf"
         }],
-        "project name": "a",
-        "yarns": []
+        "project name": "make a hat",
+        "yarns": ["blue"]
     }
 ]}
