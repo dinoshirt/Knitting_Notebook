@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-//This listener is shared by the text field and the hire button.
+// This class loads previously saved notebook information (projects and info).
 class LoadListener implements ActionListener {
     private boolean alreadyEnabled = false;
     private JButton button;
@@ -19,6 +19,7 @@ class LoadListener implements ActionListener {
     private DefaultListModel projectNameList;
     private ProjectPanel projectPanel;
 
+    // EFFECTS: creates the LoadListener
     public LoadListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
         this.currentProjects = projectPanel.getCurrentProjects();
@@ -28,7 +29,8 @@ class LoadListener implements ActionListener {
 
     }
 
-    //Required by ActionListener.
+    // MODIFIES: projectPanel
+    // EFFECTS: reads the previously saved notebook state, and loads the projects into projectPanel after resetting it.
     public void actionPerformed(ActionEvent e) {
         try {
             currentProjects = jsonReader.read();

@@ -8,7 +8,10 @@ import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//This listener is shared by the text field and the hire button.
+// Removes yarn.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+
 class RemoveYarnListener implements ActionListener {
     private boolean alreadyEnabled = false;
     private JButton button;
@@ -16,6 +19,7 @@ class RemoveYarnListener implements ActionListener {
     private DefaultListModel yarnNameList;
     private JList yarnJList;
 
+    // EFFECTS: creates the RemoveYarnListener
     public RemoveYarnListener(JButton button, YarnPanel yarnPanel, KnittingProject kp, JList yarnJList) {
         this.button = button;
         this.currentProject = kp;
@@ -23,7 +27,8 @@ class RemoveYarnListener implements ActionListener {
         this.yarnJList = yarnJList;
     }
 
-    //Required by ActionListener.
+    // MODIFIES: yarnPanel, currentProject
+    // EFFECTS: finds out which yarn was selected, and removes it.
     public void actionPerformed(ActionEvent e) {
 
         String selectedYarn = (String) yarnJList.getSelectedValue();
@@ -50,11 +55,13 @@ class RemoveYarnListener implements ActionListener {
     }
 
 
-    private void enableButton() {
-        if (!alreadyEnabled) {
-            button.setEnabled(true);
-        }
-    }
+//    // MODIFIES: button
+//    // EFFECTS: enables button
+//    private void enableButton() {
+//        if (!alreadyEnabled) {
+//            button.setEnabled(true);
+//        }
+//    }
 
 
 }

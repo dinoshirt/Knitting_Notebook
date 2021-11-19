@@ -8,6 +8,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.List;
 
+// Shows yarns in the project and lets users add or remove yarns.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+
 public class YarnPanel extends JPanel
         implements ListSelectionListener {
     private List<String> yarns;
@@ -34,7 +38,7 @@ public class YarnPanel extends JPanel
         return this.yarnInput;
     }
 
-
+    //EFFECTS: constructs a YarnPanel consisting of a list of yarns, and add/remove capabilities.
     public YarnPanel(KnittingProject kp) {
         super(new BorderLayout());
 
@@ -45,6 +49,9 @@ public class YarnPanel extends JPanel
         add(initializeButtonsAndTextFields(kp), BorderLayout.PAGE_END);
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets the yarns, yarnList with the given project's information.
+    //          resets the addButton and yarnInput action listeners so it will modify kp.
     public void resetYarnFields(KnittingProject kp) {
         this.yarns = kp.getYarns();
 
@@ -65,6 +72,9 @@ public class YarnPanel extends JPanel
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Returns an add yarn button and adds an AddYarnListener to it.
+    //          Also adds listener to yarnInput.
     public JButton makeAddButtonAndText(KnittingProject kp) {
         addButton = new JButton(addString);
         addYarnListener = new AddYarnListener(addButton, this, kp);
@@ -78,6 +88,8 @@ public class YarnPanel extends JPanel
         return addButton;
     }
 
+    // MODIFIES: this
+    // EFFECTS: Returns a remove yarn button and adds an RemoveYarnListner to it.
     public void makeRemoveButton(KnittingProject kp) {
         removeButton = new JButton(removeString);
         RemoveYarnListener removeYarnListener = new RemoveYarnListener(removeButton, this, kp, yarnJList);
@@ -86,6 +98,7 @@ public class YarnPanel extends JPanel
 
     }
 
+    // EFFECTS: Returns all buttons (add and remove) and textfields in one JPanel.
     public JPanel initializeButtonsAndTextFields(KnittingProject kp) {
         JButton addButton = makeAddButtonAndText(kp);
         makeRemoveButton(kp);
@@ -105,15 +118,20 @@ public class YarnPanel extends JPanel
         return buttonPane;
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the yarns with the given project's yarns. Creates a new text field.
     public void initializeFields(KnittingProject project) {
         yarns = project.getYarns();
         yarnInput = new JTextField(10);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Initializes yarnList and adds yarns into it form yarns.
+    //          Initializes the yarnJList and puts it in a scroll pane.
     public void initializeYarnList() {
         //Create the list and put it in a scroll pane.
         yarnList = new DefaultListModel();
-        yarnList.addElement("test yarn");
+        //yarnList.addElement("test yarn");
 
         for (String y : yarns) {
             yarnList.addElement(y);
@@ -129,6 +147,9 @@ public class YarnPanel extends JPanel
     }
 
 
+    // REQUIRES: click on yarn.
+    // MODIFIES: this
+    // EFFECTS: Clicking a yarn will enable the remove button.
     @Override
     public void valueChanged(ListSelectionEvent e) {
         removeButton.setEnabled(true);

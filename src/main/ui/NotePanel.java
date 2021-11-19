@@ -8,7 +8,10 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.List;
+
+// Shows notes in the project and lets users add notes.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
 
 public class NotePanel extends JPanel
         implements ListSelectionListener {
@@ -34,17 +37,20 @@ public class NotePanel extends JPanel
         return this.noteInput;
     }
 
-
+    //EFFECTS: constructs a NotePanel consisting of a list of notes, and add note capabilities.
     public NotePanel(KnittingProject kp) {
         super(new BorderLayout());
 
         initializeFields(kp);
-        initializeYarnList();
+        initializeNotesList();
 
         add(noteScrollPane, BorderLayout.CENTER);
         add(initializeButtonsAndTextFields(kp), BorderLayout.PAGE_END);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Returns an add note button and adds an AddNoteListener to it.
+    //          Also adds listener to noteInput.
     public JButton makeAddButtonAndText(KnittingProject kp) {
         addButton = new JButton(addString);
         addNoteListener = new AddNoteListener(addButton, this, kp);
@@ -58,7 +64,7 @@ public class NotePanel extends JPanel
         return addButton;
     }
 
-
+    // EFFECTS: Returns all buttons (add and remove) and textfields in one JPanel.
     public JPanel initializeButtonsAndTextFields(KnittingProject kp) {
         JButton addButton = makeAddButtonAndText(kp);
 
@@ -77,11 +83,16 @@ public class NotePanel extends JPanel
         return buttonPane;
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the notes with the given project's notes. Creates a new text field.
     public void initializeFields(KnittingProject project) {
         notes = project.getNotes();
         noteInput = new JTextField(10);
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets the notes, noteList with the given project's information.
+    //          resets the addButton and noteInput action listeners so it will modify kp.
     public void resetNotesFields(KnittingProject kp) {
         this.notes = kp.getNotes();
 
@@ -102,7 +113,11 @@ public class NotePanel extends JPanel
 
     }
 
-    public void initializeYarnList() {
+    // MODIFIES: this
+    // EFFECTS: Initializes notesList and adds notes into it from the notes in notes.
+    //          Notes are displayed as time stamp and note body combined together.
+    //          Initializes the noteJList and puts it in a scroll pane.
+    public void initializeNotesList() {
         //Create the list and put it in a scroll pane.
         notesList = new DefaultListModel();
         Note testNote = new Note();
@@ -121,7 +136,6 @@ public class NotePanel extends JPanel
 
         noteScrollPane = new JScrollPane(noteJList);
     }
-
 
     @Override
     public void valueChanged(ListSelectionEvent e) {

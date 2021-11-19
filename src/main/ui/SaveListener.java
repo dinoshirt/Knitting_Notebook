@@ -9,17 +9,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 
-//This listener is shared by the text field and the hire button.
+// This class saves the entire notebook state.
 class SaveListener implements ActionListener {
     private boolean alreadyEnabled = false;
     private JButton button;
-    //private JTextField projectName;
     private AllKnittingProjects currentProjects;
-    //private DefaultListModel projectNameList;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notebook.json";
 
+    // EFFECTS: Creates a SaveListener
     public SaveListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
         this.currentProjects = projectPanel.getCurrentProjects();
@@ -28,7 +27,8 @@ class SaveListener implements ActionListener {
 
     }
 
-    //Required by ActionListener.
+    // MODIFIES: projectPanel
+    // EFFECTS: Saves the notebook information by writing it to json.
     public void actionPerformed(ActionEvent e) {
         try {
             jsonWriter.open();

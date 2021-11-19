@@ -6,7 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//This listener is shared by the text field and the hire button.
+// Removes yarn.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+
 class RemoveNeedleListener implements ActionListener {
     private boolean alreadyEnabled = false;
     private JButton button;
@@ -14,6 +17,7 @@ class RemoveNeedleListener implements ActionListener {
     private DefaultListModel needleNameList;
     private JList needleJList;
 
+    // EFFECTS: creates the RemoveNeedleListener
     public RemoveNeedleListener(JButton button, NeedlePanel needlePanel, KnittingProject kp, JList needleJList) {
         this.button = button;
         this.currentProject = kp;
@@ -21,7 +25,8 @@ class RemoveNeedleListener implements ActionListener {
         this.needleJList = needleJList;
     }
 
-    //Required by ActionListener.
+    // MODIFIES: needlePanel, currentProject
+    // EFFECTS: finds out which needle was selected, and removes it.
     public void actionPerformed(ActionEvent e) {
 
         String selectedNeedle = (String) needleJList.getSelectedValue();
@@ -47,12 +52,13 @@ class RemoveNeedleListener implements ActionListener {
         }
     }
 
-
-    private void enableButton() {
-        if (!alreadyEnabled) {
-            button.setEnabled(true);
-        }
-    }
+//    // MODIFIES: button
+//    // EFFECTS: enables button
+//    private void enableButton() {
+//        if (!alreadyEnabled) {
+//            button.setEnabled(true);
+//        }
+//    }
 
 
 }

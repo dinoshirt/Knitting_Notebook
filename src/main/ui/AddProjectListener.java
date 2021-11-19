@@ -9,7 +9,10 @@ import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//This listener is shared by the text field and the hire button.
+// Adds project.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+
 class AddProjectListener implements ActionListener, DocumentListener {
     private boolean alreadyEnabled = false;
     private JButton button;
@@ -17,6 +20,7 @@ class AddProjectListener implements ActionListener, DocumentListener {
     private AllKnittingProjects currentProjects;
     private DefaultListModel projectNameList;
 
+    //EFFECTS: creates and AddProjectListener
     public AddProjectListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
         this.projectName = projectPanel.getProjectName();
@@ -24,7 +28,8 @@ class AddProjectListener implements ActionListener, DocumentListener {
         this.projectNameList = projectPanel.getProjectNameList();
     }
 
-    //Required by ActionListener.
+    // MODIFIES: currentProject, projectPanel
+    // EFFECTS: adds user input to the currentProjects list of projects. Also adds it to projectNameList.
     public void actionPerformed(ActionEvent e) {
         String name = projectName.getText();
         KnittingProject addedProject = new KnittingProject(name);
@@ -42,29 +47,37 @@ class AddProjectListener implements ActionListener, DocumentListener {
         //list.ensureIndexIsVisible(index);
     }
 
+    // MODIFIES: button
+    // EFFECTS: enables the add button
     @Override
     public void insertUpdate(DocumentEvent e) {
         enableButton();
     }
 
+    // Required by DocumentListener
     @Override
     public void removeUpdate(DocumentEvent e) {
 
     }
 
-    //Required by DocumentListener.
+    // MODIFIES: button
+    // EFFECTS: enables button if text field is not empty
     public void changedUpdate(DocumentEvent e) {
         if (!handleEmptyTextField(e)) {
             enableButton();
         }
     }
 
+    // MODIFIES: button
+    // EFFECTS: enables button
     private void enableButton() {
         if (!alreadyEnabled) {
             button.setEnabled(true);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: If text field is empty, disable the add button and return true. Otherwise return false.
     private boolean handleEmptyTextField(DocumentEvent e) {
         if (e.getDocument().getLength() <= 0) {
             button.setEnabled(false);

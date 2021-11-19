@@ -8,6 +8,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.List;
 
+// Shows needles in the project and lets users add or remove needles.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+
 public class NeedlePanel extends JPanel
         implements ListSelectionListener {
     private List<String> needles;
@@ -34,7 +38,7 @@ public class NeedlePanel extends JPanel
         return this.needleInput;
     }
 
-
+    //EFFECTS: constructs a NeedlePanel consisting of a list of needles, and add/remove capabilities.
     public NeedlePanel(KnittingProject kp) {
         super(new BorderLayout());
 
@@ -45,6 +49,9 @@ public class NeedlePanel extends JPanel
         add(initializeButtonsAndTextFields(kp), BorderLayout.PAGE_END);
     }
 
+    // MODIFIES: this
+    // EFFECTS: Returns an add needle button and adds an AddNeedleListener to it.
+    //          Also adds listener to needleInput.
     public JButton makeAddButtonAndText(KnittingProject kp) {
         addButton = new JButton(addString);
         addNeedleListener = new AddNeedleListener(addButton, this, kp);
@@ -58,6 +65,8 @@ public class NeedlePanel extends JPanel
         return addButton;
     }
 
+    // MODIFIES: this
+    // EFFECTS: Returns a remove needle button and adds an RemoveNeedleListener to it.
     public void makeRemoveButton(KnittingProject kp) {
         removeButton = new JButton(removeString);
         RemoveNeedleListener removeNeedleListener = new RemoveNeedleListener(removeButton,
@@ -69,6 +78,7 @@ public class NeedlePanel extends JPanel
 
     }
 
+    // EFFECTS: Returns all buttons (add and remove) and textfields in one JPanel.
     public JPanel initializeButtonsAndTextFields(KnittingProject kp) {
         JButton addButton = makeAddButtonAndText(kp);
         makeRemoveButton(kp);
@@ -88,11 +98,16 @@ public class NeedlePanel extends JPanel
         return buttonPane;
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the needles with the given project's needles. Creates a new text field.
     public void initializeFields(KnittingProject project) {
         needles = project.getNeedles();
         needleInput = new JTextField(10);
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets the needles, needleList with the given project's information.
+    //          resets the addButton and needleInput action listeners so it will modify kp.
     public void resetNeedleFields(KnittingProject kp) {
         this.needles = kp.getNeedles();
 
@@ -113,6 +128,9 @@ public class NeedlePanel extends JPanel
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Initializes needleList and adds needles into it form needles.
+    //          Initializes the needleJList and puts it in a scroll pane.
     public void initializeNeedleList() {
         //Create the list and put it in a scroll pane.
         needleList = new DefaultListModel();
@@ -131,7 +149,9 @@ public class NeedlePanel extends JPanel
         needleScrollPane = new JScrollPane(needleJList);
     }
 
-
+    // REQUIRES: click on needle.
+    // MODIFIES: this
+    // EFFECTS: Clicking a needle will enable the remove button.
     @Override
     public void valueChanged(ListSelectionEvent e) {
         removeButton.setEnabled(true);

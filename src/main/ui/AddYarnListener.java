@@ -8,7 +8,10 @@ import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//This listener is shared by the text field and the hire button.
+// Adds yarn.
+// This class references code from here: ListDemo.java
+// Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+
 class AddYarnListener implements ActionListener, DocumentListener {
     private boolean alreadyEnabled = false;
     private JButton button;
@@ -16,6 +19,7 @@ class AddYarnListener implements ActionListener, DocumentListener {
     private KnittingProject currentProject;
     private DefaultListModel yarnNameList;
 
+    //EFFECTS: creates an AddYarnListener
     public AddYarnListener(JButton button, YarnPanel yarnPanel, KnittingProject kp) {
         this.button = button;
         this.yarnInput = yarnPanel.getYarnInput();
@@ -23,47 +27,50 @@ class AddYarnListener implements ActionListener, DocumentListener {
         this.yarnNameList = yarnPanel.getYarnList();
     }
 
-    //Required by ActionListener.
+    // MODIFIES: currentProject, yarnPanel
+    // EFFECTS: adds user input to the currentProject's list of yarns. Also adds it to yarnNameList.
     public void actionPerformed(ActionEvent e) {
         String name = yarnInput.getText();
-        //KnittingProject addedProject = new KnittingProject(name);
         currentProject.getYarns().add(name);
         yarnNameList.addElement(name);
-
-        //int index = currentProjects.getAllKnittingProjects().size() - 1;
 
         //Reset the text field.
         yarnInput.requestFocusInWindow();
         yarnInput.setText("");
 
-        //Select the new item and make it visible.
-        //list.setSelectedIndex(index);
-        //list.ensureIndexIsVisible(index);
     }
 
+    // MODIFIES: button
+    // EFFECTS: enables the add button
     @Override
     public void insertUpdate(DocumentEvent e) {
         enableButton();
     }
 
+    // Required by DocumentListener
     @Override
     public void removeUpdate(DocumentEvent e) {
 
     }
 
-    //Required by DocumentListener.
+    // MODIFIES: button
+    // EFFECTS: enables button if text field is not empty
     public void changedUpdate(DocumentEvent e) {
         if (!handleEmptyTextField(e)) {
             enableButton();
         }
     }
 
+    // MODIFIES: button
+    // EFFECTS: enables button
     private void enableButton() {
         if (!alreadyEnabled) {
             button.setEnabled(true);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: If text field is empty, disable the add button and return true. Otherwise return false.
     private boolean handleEmptyTextField(DocumentEvent e) {
         if (e.getDocument().getLength() <= 0) {
             button.setEnabled(false);

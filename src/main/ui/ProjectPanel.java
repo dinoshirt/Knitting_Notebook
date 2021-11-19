@@ -7,10 +7,10 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-// A GUI that shows all projects in a list, and enables actions on the projects
-// This class references code from here: ListDemo.java and SplitPaneDemoProject.java
+// Shows notebook projects and lets the user modify the projects in the notebook, save, and load.
+// On project click, also updates what Yarn, Needle, and NotePanels will show.
+// This class references code from here: ListDemo.java
 // Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
-// Link: https://docs.oracle.com/javase/tutorialJWS/samples/uiswing/SplitPaneDemoProject
 
 public class ProjectPanel extends JPanel
         implements ListSelectionListener {
@@ -34,11 +34,6 @@ public class ProjectPanel extends JPanel
         return projectName;
     }
 
-    public JPanel getProjectPage() {
-        return this.projectPage;
-    }
-
-
     public AllKnittingProjects getCurrentProjects() {
         return currentProjects;
     }
@@ -47,6 +42,9 @@ public class ProjectPanel extends JPanel
         return projectNameList;
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes a anew JTextField, JPanel for projectPage, and AllKnittingProjects.
+    //          Adds a test project into currentProjects.
     public void initializeFields() {
         projectName = new JTextField(10);
         currentProjects = new AllKnittingProjects();
@@ -54,9 +52,12 @@ public class ProjectPanel extends JPanel
         KnittingProject testProject = new KnittingProject("test project");
         currentProjects.addKnittingProject(testProject);
         projectPage = new JPanel();
-
     }
 
+    // MODIFIES: this
+    // EFFECTS: Initializes projectNameList as a new DefaultListModel, and
+    //          initializes list as a new JList containing projectNameList and returns it in a scroll pane.
+    //          Adds a test project to the DefaultListModel.
     public JScrollPane initializeList() {
         //Create the list and put it in a scroll pane.
         projectNameList = new DefaultListModel();
@@ -70,6 +71,9 @@ public class ProjectPanel extends JPanel
         return listScrollPane;
     }
 
+    // MODIFIES: this
+    // EFFECTS: Returns an add project button and adds a AddProjectListener to it.
+    //          also adds AddProjectListener to projectName.
     public JButton makeAddButtonAndText() {
         JButton addButton = new JButton(addString);
         AddProjectListener addProjectListener = new AddProjectListener(addButton, this);
@@ -83,6 +87,7 @@ public class ProjectPanel extends JPanel
         return addButton;
     }
 
+    // EFFECTS: Returns a save notebook button and adds a SaveListener to it.
     public JButton makeSaveButton() {
         JButton saveButton = new JButton(saveString);
         SaveListener saveListener = new SaveListener(saveButton, this);
@@ -92,6 +97,7 @@ public class ProjectPanel extends JPanel
         return saveButton;
     }
 
+    // EFFECTS: Returns a load notebook button and adds a LoadListener to it.
     public JButton makeLoadButton() {
         JButton loadButton = new JButton(loadString);
         LoadListener loadListener = new LoadListener(loadButton, this);
@@ -101,6 +107,7 @@ public class ProjectPanel extends JPanel
         return loadButton;
     }
 
+    // EFFECTS: Combines and returns all buttons (add, save, load) and text fields into one JPanel.
     public JPanel initializeButtonsAndTextFields() {
         JButton addButton = makeAddButtonAndText();
         JButton saveButton = makeSaveButton();
@@ -122,7 +129,8 @@ public class ProjectPanel extends JPanel
     }
 
 
-
+    // EFFECTS: Constructs a project panel that shows a list of projects and has add, save, load capabilities.
+    //          Initializes the bottom right, middle, and left panels of project info as the first project.
     public ProjectPanel() {
         super(new BorderLayout());
 
@@ -149,14 +157,19 @@ public class ProjectPanel extends JPanel
         return this.panelLeft;
     }
 
+    // MODIFIES: this
+    // EFFECTS: resets the currentProjects with the given loadedProjects
     public void resetCurrentProjects(AllKnittingProjects loadedProjects) {
         this.currentProjects = loadedProjects;
     }
 
+    // REQUIRES: selecting a project by clicking on it
+    // MODIFIES: this
+    // EFFECTS: Upon selecting a project, the panels will be updated with the selected project info.
     public void valueChanged(ListSelectionEvent e) {
 
         String nameOfSelectedProject = (String) list.getSelectedValue();
-        System.out.println(currentProjects.listProjectNames());
+        //System.out.println(currentProjects.listProjectNames());
         KnittingProject indexedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
 
         panelRight.resetNotesFields(indexedProject);
