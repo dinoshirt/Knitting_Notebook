@@ -19,6 +19,8 @@ public class NotePanel extends JPanel
     private JTextField noteInput;
     private static final String addString = "Add New Note";
 
+    private JButton addButton;
+    private AddNoteListener addNoteListener;
 
     public Notes getNotes() {
         return this.notes;
@@ -44,8 +46,8 @@ public class NotePanel extends JPanel
     }
 
     public JButton makeAddButtonAndText(KnittingProject kp) {
-        JButton addButton = new JButton(addString);
-        AddNoteListener addNoteListener = new AddNoteListener(addButton, this, kp);
+        addButton = new JButton(addString);
+        addNoteListener = new AddNoteListener(addButton, this, kp);
         addButton.setActionCommand(addString);
         addButton.addActionListener(addNoteListener);
         addButton.setEnabled(false);
@@ -78,6 +80,26 @@ public class NotePanel extends JPanel
     public void initializeFields(KnittingProject project) {
         notes = project.getNotes();
         noteInput = new JTextField(10);
+    }
+
+    public void resetNotesFields(KnittingProject kp) {
+        this.notes = kp.getNotes();
+
+        notesList.removeAllElements();
+        for (Note n : notes.getNotes()) {
+            notesList.addElement(n.getDateTimeAndBody());
+        }
+
+        addButton.removeActionListener(addNoteListener);
+        noteInput.removeActionListener(addNoteListener);
+        noteInput.getDocument().removeDocumentListener(addNoteListener);
+
+        addNoteListener = new AddNoteListener(addButton, this, kp);
+
+        addButton.addActionListener(addNoteListener);
+        noteInput.addActionListener(addNoteListener);
+        noteInput.getDocument().addDocumentListener(addNoteListener);
+
     }
 
     public void initializeYarnList() {

@@ -17,11 +17,11 @@ class AddProjectListener implements ActionListener, DocumentListener {
     private AllKnittingProjects currentProjects;
     private DefaultListModel projectNameList;
 
-    public AddProjectListener(JButton button, ListGui listGui) {
+    public AddProjectListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
-        this.projectName = listGui.getProjectName();
-        this.currentProjects = listGui.getCurrentProjects();
-        this.projectNameList = listGui.getProjectNameList();
+        this.projectName = projectPanel.getProjectName();
+        this.currentProjects = projectPanel.getCurrentProjects();
+        this.projectNameList = projectPanel.getProjectNameList();
     }
 
     //Required by ActionListener.

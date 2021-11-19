@@ -17,6 +17,8 @@ public class NeedlePanel extends JPanel
     private JTextField needleInput;
     private static final String addString = "Add New Needle";
     private static final String removeString = "Remove Needle";
+    private JButton addButton;
+    private AddNeedleListener addNeedleListener;
 
     private JButton removeButton;
 
@@ -44,8 +46,8 @@ public class NeedlePanel extends JPanel
     }
 
     public JButton makeAddButtonAndText(KnittingProject kp) {
-        JButton addButton = new JButton(addString);
-        AddNeedleListener addNeedleListener = new AddNeedleListener(addButton, this, kp);
+        addButton = new JButton(addString);
+        addNeedleListener = new AddNeedleListener(addButton, this, kp);
         addButton.setActionCommand(addString);
         addButton.addActionListener(addNeedleListener);
         addButton.setEnabled(false);
@@ -89,6 +91,26 @@ public class NeedlePanel extends JPanel
     public void initializeFields(KnittingProject project) {
         needles = project.getNeedles();
         needleInput = new JTextField(10);
+    }
+
+    public void resetNeedleFields(KnittingProject kp) {
+        this.needles = kp.getNeedles();
+
+        needleList.removeAllElements();
+        for (String n : needles) {
+            needleList.addElement(n);
+        }
+
+        addButton.removeActionListener(addNeedleListener);
+        needleInput.removeActionListener(addNeedleListener);
+        needleInput.getDocument().removeDocumentListener(addNeedleListener);
+
+        addNeedleListener = new AddNeedleListener(addButton, this, kp);
+
+        addButton.addActionListener(addNeedleListener);
+        needleInput.addActionListener(addNeedleListener);
+        needleInput.getDocument().addDocumentListener(addNeedleListener);
+
     }
 
     public void initializeNeedleList() {

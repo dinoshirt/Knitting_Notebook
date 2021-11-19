@@ -8,10 +8,11 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 // A GUI that shows all projects in a list, and enables actions on the projects
-// This class references code from here: ListDemo.java
+// This class references code from here: ListDemo.java and SplitPaneDemoProject.java
 // Link: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
+// Link: https://docs.oracle.com/javase/tutorialJWS/samples/uiswing/SplitPaneDemoProject
 
-public class ListGui extends JPanel
+public class ProjectPanel extends JPanel
         implements ListSelectionListener {
     protected JList list;
     protected AllKnittingProjects currentProjects;
@@ -25,8 +26,8 @@ public class ListGui extends JPanel
 
     private JPanel projectPage;
 
-    private JPanel panelRight;
-    private JPanel panelMiddle;
+    private NotePanel panelRight;
+    private NeedlePanel panelMiddle;
     private YarnPanel panelLeft;
 
     public JTextField getProjectName() {
@@ -37,9 +38,6 @@ public class ListGui extends JPanel
         return this.projectPage;
     }
 
-    public JList getProjectJList() {
-        return this.list;
-    }
 
     public AllKnittingProjects getCurrentProjects() {
         return currentProjects;
@@ -123,12 +121,9 @@ public class ListGui extends JPanel
         return buttonPane;
     }
 
-    public void projectPanel() {
-
-    }
 
 
-    public ListGui() {
+    public ProjectPanel() {
         super(new BorderLayout());
 
         initializeFields();
@@ -159,42 +154,17 @@ public class ListGui extends JPanel
     }
 
     public void valueChanged(ListSelectionEvent e) {
-//        JList list = (JList)e.getSource();
-//        int index = list.getSelectedIndex();
-//        KnittingProject indexedProject = currentProjects.getAllKnittingProjects().get(index);
+
         String nameOfSelectedProject = (String) list.getSelectedValue();
         System.out.println(currentProjects.listProjectNames());
         KnittingProject indexedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
-        //System.out.println(indexedProject.getProjectName());
 
-        panelRight.removeAll();
-//        panelRight.revalidate();
-//        panelRight.repaint();
+        panelRight.resetNotesFields(indexedProject);
+
         panelLeft.resetYarnFields(indexedProject);
-//        panelLeft.revalidate();
-//        panelLeft.repaint();
-        panelMiddle.removeAll();
-//        panelMiddle.revalidate();
-//        panelMiddle.repaint();
 
+        panelMiddle.resetNeedleFields(indexedProject);
 
-//        panelRight = new NotePanel(indexedProject);
-//        panelMiddle = new NeedlePanel(indexedProject);
-//        panelLeft = new YarnPanel(indexedProject);
-
-        //String nameOfSelectedProject = (String) list.getSelectedValue();
-
-        //KnittingProject selectedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
-
-        //ListSelectionModel lsm = (ListSelectionModel) list.getSelectionModel();
-
-
-        //String nameOfSelectedProject = (String) list.getSelectedValue();
-
-        //KnittingProject selectedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
-        //System.out.println(nameOfSelectedProject);
-        //projectPage = new NotebookPage(selectedProject);
-        //System.out.println(selectedProject.getNeedles());
     }
 
 

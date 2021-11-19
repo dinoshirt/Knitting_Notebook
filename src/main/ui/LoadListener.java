@@ -3,12 +3,10 @@ package ui;
 import model.AllKnittingProjects;
 import model.KnittingProject;
 import persistence.JsonReader;
-import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 //This listener is shared by the text field and the hire button.
@@ -19,14 +17,14 @@ class LoadListener implements ActionListener {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notebook.json";
     private DefaultListModel projectNameList;
-    private ListGui listGui;
+    private ProjectPanel projectPanel;
 
-    public LoadListener(JButton button, ListGui listGui) {
+    public LoadListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
-        this.currentProjects = listGui.getCurrentProjects();
+        this.currentProjects = projectPanel.getCurrentProjects();
         jsonReader = new JsonReader(JSON_STORE);
-        this.projectNameList = listGui.getProjectNameList();
-        this.listGui = listGui;
+        this.projectNameList = projectPanel.getProjectNameList();
+        this.projectPanel = projectPanel;
 
     }
 
@@ -34,7 +32,7 @@ class LoadListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             currentProjects = jsonReader.read();
-            listGui.resetCurrentProjects(currentProjects);
+            projectPanel.resetCurrentProjects(currentProjects);
 
             for (KnittingProject kp: currentProjects.getAllKnittingProjects()) {
                 if (!projectNameList.contains(kp.getProjectName())) {

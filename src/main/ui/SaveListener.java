@@ -1,7 +1,6 @@
 package ui;
 
 import model.AllKnittingProjects;
-import model.KnittingProject;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -21,9 +20,9 @@ class SaveListener implements ActionListener {
     private JsonReader jsonReader;
     private static final String JSON_STORE = "./data/notebook.json";
 
-    public SaveListener(JButton button, ListGui listGui) {
+    public SaveListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
-        this.currentProjects = listGui.getCurrentProjects();
+        this.currentProjects = projectPanel.getCurrentProjects();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 

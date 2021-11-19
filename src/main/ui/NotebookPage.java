@@ -2,14 +2,11 @@ package ui;
 
 import model.AllKnittingProjects;
 import model.KnittingProject;
-import model.KnittingSupplies;
-import model.Notes;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.List;
 
 public class NotebookPage extends JPanel
         implements ListSelectionListener {
@@ -18,7 +15,7 @@ public class NotebookPage extends JPanel
     private String nameOfSelectedProject;
     private AllKnittingProjects currentProjects;
     private KnittingProject project;
-    private ListGui projectPanel;
+    private ProjectPanel projectPanel;
 
     private JPanel panelRight;
     private JPanel panelMiddle;
@@ -26,7 +23,7 @@ public class NotebookPage extends JPanel
 
 
     public NotebookPage() {
-        ListGui projectPanel = new ListGui();
+        ProjectPanel projectPanel = new ProjectPanel();
         KnittingProject startProject = projectPanel.getCurrentProjects().getAllKnittingProjects().get(0);
 
 //        JPanel panelRight = new NotePanel(indexedProject);
