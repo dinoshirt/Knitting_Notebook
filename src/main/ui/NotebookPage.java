@@ -39,20 +39,6 @@ public class NotebookPage extends JPanel
 
     }
 
-    public void initializeYarnList() {
-        //Create the list and put it in a scroll pane.
-        yarnList = new DefaultListModel();
-        yarnList.addElement("test yarn");
-
-        yarnJList = new JList(yarnList);
-        yarnJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        yarnJList.setSelectedIndex(0);
-        yarnJList.addListSelectionListener(this);
-        yarnJList.setVisibleRowCount(3);
-
-        yarnScrollPane = new JScrollPane(yarnJList);
-    }
-
     public void initializeNeedleList() {
         //Create the list and put it in a scroll pane.
         needleList = new DefaultListModel();
@@ -67,24 +53,32 @@ public class NotebookPage extends JPanel
         needleScrollPane = new JScrollPane(needleJList);
     }
 
+
+
     public NotebookPage(KnittingProject project) {
         initializeFields(project);
-        initializeYarnList();
         initializeNeedleList();
 
-        JSplitPane splitPane;
+        JSplitPane splitPaneOne;
+        JSplitPane splitPaneTwo;
 
-        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-               yarnScrollPane, needleScrollPane);
-        splitPane.setOneTouchExpandable(true);
+        YarnPanel yarnPanel = new YarnPanel(project);
+        NeedlePanel needlePanel = new NeedlePanel(project);
+        NotePanel notePanel = new NotePanel(project);
+
+        splitPaneOne = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                yarnPanel, needlePanel);
+        splitPaneTwo = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, splitPaneOne, notePanel);
+        splitPaneOne.setOneTouchExpandable(true);
         //splitPane.setDividerLocation(150);
 
         //Provide minimum sizes for the two components in the split pane
-        Dimension minimumSize = new Dimension(150, 100);
-        yarnScrollPane.setPreferredSize(minimumSize);
-        needleScrollPane.setPreferredSize(minimumSize);
+        Dimension minimumSize = new Dimension(400, 100);
+        yarnPanel.setPreferredSize(minimumSize);
+        needlePanel.setPreferredSize(minimumSize);
+        notePanel.setPreferredSize(minimumSize);
 
-        add(splitPane, BorderLayout.CENTER);
+        add(splitPaneTwo, BorderLayout.CENTER);
 
 
 

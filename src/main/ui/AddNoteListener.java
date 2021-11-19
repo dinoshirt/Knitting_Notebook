@@ -1,7 +1,7 @@
 package ui;
 
-import model.AllKnittingProjects;
 import model.KnittingProject;
+import model.Note;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -10,32 +10,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //This listener is shared by the text field and the hire button.
-class AddListener implements ActionListener, DocumentListener {
+class AddNoteListener implements ActionListener, DocumentListener {
     private boolean alreadyEnabled = false;
     private JButton button;
-    private JTextField projectName;
-    private AllKnittingProjects currentProjects;
-    private DefaultListModel projectNameList;
+    private JTextField noteInput;
+    private KnittingProject currentProject;
+    private DefaultListModel notesList;
 
-    public AddListener(JButton button, ListGui listGui) {
+    public AddNoteListener(JButton button, NotePanel notePanel, KnittingProject kp) {
         this.button = button;
-        this.projectName = listGui.getProjectName();
-        this.currentProjects = listGui.getCurrentProjects();
-        this.projectNameList = listGui.getProjectNameList();
+        this.noteInput = notePanel.getNoteInput();
+        this.currentProject = kp;
+        this.notesList = notePanel.getNotesList();
     }
 
     //Required by ActionListener.
     public void actionPerformed(ActionEvent e) {
-        String name = projectName.getText();
-        KnittingProject addedProject = new KnittingProject(name);
-        currentProjects.addKnittingProject(addedProject);
-        projectNameList.addElement(name);
+        String writtenBody = noteInput.getText();
+        Note createdNote = new Note();
+        createdNote.addToBody(writtenBody);
+        currentProject.getNotes().addNote(createdNote);
+        notesList.addElement(createdNote.getDateTimeAndBody());
 
         //int index = currentProjects.getAllKnittingProjects().size() - 1;
 
         //Reset the text field.
-        projectName.requestFocusInWindow();
-        projectName.setText("");
+        noteInput.requestFocusInWindow();
+        noteInput.setText("");
 
         //Select the new item and make it visible.
         //list.setSelectedIndex(index);

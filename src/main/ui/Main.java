@@ -44,23 +44,25 @@ public class Main {
     private static void createAndShowGUI() {
         JPanel overallPane = new JPanel();
         JPanel comboBoxPane = new JPanel(); //use FlowLayout
+
         String[] comboBoxItems = {"All Projects", "Project Info"};
         JComboBox cb = new JComboBox(comboBoxItems);
         cb.setEditable(false);
-        //cb.addItemListener(this);
+
         comboBoxPane.add(cb);
 
-        CardMaker createCards = new CardMaker();
+        CardMaker createdCards = new CardMaker();
+        cb.addItemListener(new ComboSelectListener(cb, createdCards));
 
-        //overallPane.add(comboBoxPane, BorderLayout.PAGE_START);
-        //overallPane.add(createCards.getCards(), BorderLayout.CENTER);
+        overallPane.add(comboBoxPane, BorderLayout.PAGE_START);
+        overallPane.add(createdCards.getCards(), BorderLayout.CENTER);
 
                 //Create and set up the window.
         JFrame frame = new JFrame("ListDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
-        JComponent newContentPane = new NotebookPage(new KnittingProject("test"));
+        JComponent newContentPane = overallPane;
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
 
@@ -69,11 +71,6 @@ public class Main {
         frame.setVisible(true);
     }
 
-////Method came from the ItemListener class implementation,
-////contains functionality to process the combo box item selecting
-//        public void itemStateChanged(ItemEvent evt) {
-//            CardLayout cl = (CardLayout)(cards.getLayout());
-//            cl.show(cards, (String)evt.getItem());
-//        }
+
 
 }

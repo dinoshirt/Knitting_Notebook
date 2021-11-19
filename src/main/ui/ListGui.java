@@ -2,12 +2,8 @@ package ui;
 
 import model.AllKnittingProjects;
 import model.KnittingProject;
-import persistence.JsonReader;
-import persistence.JsonWriter;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -63,13 +59,13 @@ public class ListGui extends JPanel
 
     public JButton makeAddButtonAndText() {
         JButton addButton = new JButton(addString);
-        AddListener addListener = new AddListener(addButton, this);
+        AddProjectListener addProjectListener = new AddProjectListener(addButton, this);
         addButton.setActionCommand(addString);
-        addButton.addActionListener(addListener);
+        addButton.addActionListener(addProjectListener);
         addButton.setEnabled(false);
 
-        projectName.addActionListener(addListener);
-        projectName.getDocument().addDocumentListener(addListener);
+        projectName.addActionListener(addProjectListener);
+        projectName.getDocument().addDocumentListener(addProjectListener);
 
         return addButton;
     }
