@@ -25,6 +25,7 @@ public class AllKnittingProjects implements Writable {
     //EFFECTS: adds the given knitting project to the list of all knitting projects
     public void addKnittingProject(KnittingProject projectToAdd) {
         allKnittingProjects.add(projectToAdd);
+        EventLog.getInstance().logEvent(new Event("Added to Notebook: " + projectToAdd.getProjectName()));
     }
 
 //    //MODIFIES: this
