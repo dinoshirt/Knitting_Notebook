@@ -1,6 +1,7 @@
 package ui;
 
 import model.KnittingProject;
+import model.Needles;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class NeedlePanel extends JPanel
         implements ListSelectionListener {
-    private List<String> needles;
+    private Needles needles;
     private DefaultListModel needleList;
     private JList needleJList;
     private JScrollPane needleScrollPane;
@@ -26,7 +27,7 @@ public class NeedlePanel extends JPanel
 
     private JButton removeButton;
 
-    public List<String> getNeedles() {
+    public Needles getNeedles() {
         return this.needles;
     }
 
@@ -112,7 +113,7 @@ public class NeedlePanel extends JPanel
         this.needles = kp.getNeedles();
 
         needleList.removeAllElements();
-        for (String n : needles) {
+        for (String n : needles.getSupplies()) {
             needleList.addElement(n);
         }
 
@@ -136,7 +137,7 @@ public class NeedlePanel extends JPanel
         needleList = new DefaultListModel();
         needleList.addElement("test needle");
 
-        for (String n : needles) {
+        for (String n : needles.getSupplies()) {
             needleList.addElement(n);
         }
 

@@ -49,12 +49,12 @@ class JsonReaderTest extends JsonTest {
             AllKnittingProjects akp = reader.read();
             assertEquals(2, akp.getAllKnittingProjects().size());
             KnittingProject correctProject = new KnittingProject("Proj1");
-            correctProject.getYarns().add("blue");
-            correctProject.getNeedles().add("10mm");
+            correctProject.getYarns().addSupply("blue");
+            correctProject.getNeedles().addSupply("10mm");
 
             checkKnittingProject("Proj1",
-                    correctProject.getYarns(),
-                    correctProject.getNeedles(),
+                    correctProject.getYarns().getSupplies(),
+                    correctProject.getNeedles().getSupplies(),
                     akp.getAllKnittingProjects().get(0));
 
             checkParticularNote(akp.getAllKnittingProjects().get(0),
@@ -75,14 +75,14 @@ class JsonReaderTest extends JsonTest {
             AllKnittingProjects akp = reader.read();
             assertEquals(2, akp.getAllKnittingProjects().size());
             KnittingProject correctProject = new KnittingProject("Proj2");
-            correctProject.getYarns().add("blue");
-            correctProject.getYarns().add("yellow");
-            correctProject.getNeedles().add("10mm");
-            correctProject.getNeedles().add("11mm");
+            correctProject.getYarns().addSupply("blue");
+            correctProject.getYarns().addSupply("yellow");
+            correctProject.getNeedles().addSupply("10mm");
+            correctProject.getNeedles().addSupply("11mm");
 
             checkKnittingProject("Proj2",
-                    correctProject.getYarns(),
-                    correctProject.getNeedles(),
+                    correctProject.getYarns().getSupplies(),
+                    correctProject.getNeedles().getSupplies(),
                     akp.getAllKnittingProjects().get(1));
 
             checkParticularNote(akp.getAllKnittingProjects().get(1),

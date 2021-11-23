@@ -52,8 +52,8 @@ class JsonWriterTest extends JsonTest {
             AllKnittingProjects akp = new AllKnittingProjects();
             KnittingProject kp = new KnittingProject("My first project");
             Note newNote = new Note(parse("2021-10-23T15:07:46.316"), "Event 1");
-            kp.getYarns().add("worsted");
-            kp.getNeedles().add("metal");
+            kp.getYarns().addSupply("worsted");
+            kp.getNeedles().addSupply("metal");
             kp.getNotes().addNote(newNote);
             akp.addKnittingProject(kp);
 
@@ -67,8 +67,8 @@ class JsonWriterTest extends JsonTest {
             readAkp = reader.read();
             assertEquals(1, readAkp.getAllKnittingProjects().size());
             checkKnittingProject("My first project",
-                    kp.getYarns(),
-                    kp.getNeedles(),
+                    kp.getYarns().getSupplies(),
+                    kp.getNeedles().getSupplies(),
                     readAkp.getAllKnittingProjects().get(0));
 
             checkParticularNote(readAkp.getAllKnittingProjects().get(0),

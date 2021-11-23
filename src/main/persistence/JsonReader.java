@@ -80,7 +80,7 @@ public class JsonReader {
     private void parseYarnsAndAdd(KnittingProject kp, JSONObject jsonObject) {
         for (int i = 0; i < jsonObject.getJSONArray("yarns").length(); i++) {
             String yarn = jsonObject.getJSONArray("yarns").getString(i);
-            kp.getYarns().add(yarn);
+            kp.getYarns().addSupply(yarn);
         }
     }
 
@@ -89,7 +89,7 @@ public class JsonReader {
     private void parseNeedlesAndAdd(KnittingProject kp, JSONObject jsonObject) {
         for (int i = 0; i < jsonObject.getJSONArray("needles").length(); i++) {
             String needle = jsonObject.getJSONArray("needles").getString(i);
-            kp.getNeedles().add(needle);
+            kp.getNeedles().addSupply(needle);
         }
     }
 

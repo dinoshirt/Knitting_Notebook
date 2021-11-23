@@ -19,8 +19,8 @@ class KnittingProjectTest {
     @Test
     public void nameInitiated() {
         assertEquals("First Project", newKnittingProject.getProjectName());
-        assertEquals(0, newKnittingProject.getYarns().size());
-        assertEquals(0, newKnittingProject.getNeedles().size());
+        assertEquals(0, newKnittingProject.getYarns().getSupplies().size());
+        assertEquals(0, newKnittingProject.getNeedles().getSupplies().size());
         assertEquals(0 , newKnittingProject.getNotes().getNotes().size());
 
     }

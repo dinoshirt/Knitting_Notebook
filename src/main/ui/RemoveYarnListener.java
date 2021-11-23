@@ -32,7 +32,7 @@ class RemoveYarnListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String selectedYarn = (String) yarnJList.getSelectedValue();
-        currentProject.getYarns().remove(selectedYarn);
+        currentProject.getYarns().removeSupply(selectedYarn);
 
 
         int index = yarnJList.getSelectedIndex();

@@ -33,7 +33,7 @@ class AddNeedleListener implements ActionListener, DocumentListener {
     public void actionPerformed(ActionEvent e) {
         String name = needleInput.getText();
         //KnittingProject addedProject = new KnittingProject(name);
-        currentProject.getNeedles().add(name);
+        currentProject.getNeedles().addSupply(name);
         needleNameList.addElement(name);
 
         //int index = currentProjects.getAllKnittingProjects().size() - 1;

@@ -31,7 +31,7 @@ class AddYarnListener implements ActionListener, DocumentListener {
     // EFFECTS: adds user input to the currentProject's list of yarns. Also adds it to yarnNameList.
     public void actionPerformed(ActionEvent e) {
         String name = yarnInput.getText();
-        currentProject.getYarns().add(name);
+        currentProject.getYarns().addSupply(name);
         yarnNameList.addElement(name);
 
         //Reset the text field.

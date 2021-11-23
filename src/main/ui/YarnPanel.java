@@ -1,6 +1,8 @@
 package ui;
 
 import model.KnittingProject;
+import model.KnittingSupplies;
+import model.Yarns;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class YarnPanel extends JPanel
         implements ListSelectionListener {
-    private List<String> yarns;
+    private Yarns yarns;
     private DefaultListModel yarnList;
     private JList yarnJList;
     private JScrollPane yarnScrollPane;
@@ -26,7 +28,7 @@ public class YarnPanel extends JPanel
     private JButton removeButton;
     private AddYarnListener addYarnListener;
 
-    public List<String> getYarns() {
+    public Yarns getYarns() {
         return this.yarns;
     }
 
@@ -56,7 +58,7 @@ public class YarnPanel extends JPanel
         this.yarns = kp.getYarns();
 
         yarnList.removeAllElements();
-        for (String y : yarns) {
+        for (String y : yarns.getSupplies()) {
             yarnList.addElement(y);
         }
 
@@ -133,7 +135,7 @@ public class YarnPanel extends JPanel
         yarnList = new DefaultListModel();
         //yarnList.addElement("test yarn");
 
-        for (String y : yarns) {
+        for (String y : yarns.getSupplies()) {
             yarnList.addElement(y);
         }
 

@@ -57,8 +57,8 @@ public class AllKnittingProjects implements Writable {
     public KnittingProject getKnittingProject(String name) {
         KnittingProject currentProject;
         KnittingProject dummyProject = new KnittingProject("dummy");
-        dummyProject.getYarns().add("dummy yarn");
-        dummyProject.getNeedles().add("dummy needles");
+        dummyProject.getYarns().addSupply("dummy yarn");
+        dummyProject.getNeedles().addSupply("dummy needles");
         for (int i = 0; i < this.allKnittingProjects.size(); i++) {
             currentProject = this.allKnittingProjects.get(i);
             if (currentProject.getProjectName().equals(name)) {

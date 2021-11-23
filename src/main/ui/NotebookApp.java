@@ -177,9 +177,9 @@ public class NotebookApp {
         System.out.println("Please input the name of the item you would like to remove: ");
         String itemName = input.next();
 
-        startingSupplies = projectChosen.getYarns().size();
-        projectChosen.getYarns().remove(itemName);
-        postRemovalSupplies = projectChosen.getYarns().size();
+        startingSupplies = projectChosen.getYarns().getSupplies().size();
+        projectChosen.getYarns().removeSupply(itemName);
+        postRemovalSupplies = projectChosen.getYarns().getSupplies().size();
 
         System.out.println(projectChosen.getYarns());
         if (startingSupplies == postRemovalSupplies) {
@@ -198,9 +198,9 @@ public class NotebookApp {
         System.out.println("Please input the name of the item you would like to remove: ");
         String itemName = input.next();
 
-        startingSupplies = projectChosen.getNeedles().size();
-        projectChosen.getNeedles().remove(itemName);
-        postRemovalSupplies = projectChosen.getNeedles().size();
+        startingSupplies = projectChosen.getNeedles().getSupplies().size();
+        projectChosen.getNeedles().removeSupply(itemName);
+        postRemovalSupplies = projectChosen.getNeedles().getSupplies().size();
 
         System.out.println(projectChosen.getNeedles());
         if (startingSupplies == postRemovalSupplies) {
@@ -218,10 +218,10 @@ public class NotebookApp {
         String itemName = input.next();
 
         if (fieldChosen.equals("yarn")) {
-            projectChosen.getYarns().add(itemName);
+            projectChosen.getYarns().addSupply(itemName);
             System.out.println(projectChosen.getYarns());
         } else if (fieldChosen.equals("needle")) {
-            projectChosen.getNeedles().add(itemName);
+            projectChosen.getNeedles().addSupply(itemName);
             System.out.println(projectChosen.getNeedles());
         } else if (fieldChosen.equals("note")) {
             Note createdNote = new Note();

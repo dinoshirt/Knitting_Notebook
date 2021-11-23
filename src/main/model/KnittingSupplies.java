@@ -22,6 +22,8 @@ public abstract class KnittingSupplies {
     //EFFECTS: adds the given supply to the list of supplies
     public void addSupply(String supply) {
         listOfSupplies.add(supply);
+        EventLog.getInstance().logEvent(new Event("Added to Project: " + supply));
+
     }
 
     //REQUIRES: list of supplies should not be empty. It should contain supply.
@@ -29,6 +31,7 @@ public abstract class KnittingSupplies {
     //EFFECTS: removes the given supply to the list of supplies
     public void removeSupply(String supply) {
         listOfSupplies.remove(supply);
+        EventLog.getInstance().logEvent(new Event("Removed from Project: " + supply));
     }
 
     //REQUIRES: supply should exist in listOfSupplies

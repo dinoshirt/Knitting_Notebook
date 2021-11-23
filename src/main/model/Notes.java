@@ -37,6 +37,7 @@ public class Notes {
     //EFFECTS: adds a note to the back of the list
     public void addNote(Note n) {
         listOfNotes.add(n);
+        EventLog.getInstance().logEvent(new Event("Added a Note to the Project"));
     }
 
     // EFFECTS: converts each note into a JSONObject, and returns all notes as a JSONArray

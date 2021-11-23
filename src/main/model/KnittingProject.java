@@ -33,13 +33,13 @@ public class KnittingProject implements Writable {
     }
 
     //EFFECTS: returns the names of all yarns
-    public List<String> getYarns() {
-        return this.yarns.getSupplies();
+    public Yarns getYarns() {
+        return this.yarns;
     }
 
     //EFFECTS: returns the names of all needles
-    public List<String> getNeedles() {
-        return this.needles.getSupplies();
+    public Needles getNeedles() {
+        return this.needles;
     }
 
     //EFFECTS: returns all notes

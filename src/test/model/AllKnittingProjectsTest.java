@@ -20,8 +20,8 @@ class AllKnittingProjectsTest {
     @Test
     public void addOneKnittingProject() {
         KnittingProject newKnittingProject = new KnittingProject("project 1");
-        newKnittingProject.getYarns().add("blue yarn");
-        newKnittingProject.getNeedles().add("10mm");
+        newKnittingProject.getYarns().addSupply("blue yarn");
+        newKnittingProject.getNeedles().addSupply("10mm");
         assertEquals(0, testKnittingProjects.getAllKnittingProjects().size());
 
         testKnittingProjects.addKnittingProject(newKnittingProject);
@@ -55,8 +55,8 @@ class AllKnittingProjectsTest {
         assertEquals("dummy", gottenProject.getProjectName());
         assertEquals(dummyYarn, gottenProject.getYarns());
         assertEquals(dummyNeedle, gottenProject.getNeedles());
-        assertEquals(1, gottenProject.getYarns().size());
-        assertEquals(1, gottenProject.getNeedles().size());
+        assertEquals(1, gottenProject.getYarns().getSupplies().size());
+        assertEquals(1, gottenProject.getNeedles().getSupplies().size());
     }
 
     @Test
@@ -67,10 +67,10 @@ class AllKnittingProjectsTest {
         gottenProject = testKnittingProjects.getKnittingProject("project 1");
 
         assertEquals("project 1", gottenProject.getProjectName());
-        assertEquals(1, gottenProject.getYarns().size());
-        assertEquals("blue yarn", gottenProject.getYarns().get(0));
-        assertEquals(1, gottenProject.getNeedles().size());
-        assertEquals("10mm", gottenProject.getNeedles().get(0));
+        assertEquals(1, gottenProject.getYarns().getSupplies().size());
+        assertEquals("blue yarn", gottenProject.getYarns().getSupplies().get(0));
+        assertEquals(1, gottenProject.getNeedles().getSupplies().size());
+        assertEquals("10mm", gottenProject.getNeedles().getSupplies().get(0));
     }
 
     @Test
@@ -80,8 +80,8 @@ class AllKnittingProjectsTest {
         }
         assertEquals(10, testKnittingProjects.getAllKnittingProjects().size());
         KnittingProject project11 = new KnittingProject("project eleven");
-        project11.getYarns().add("blue yarn");
-        project11.getNeedles().add("10mm");
+        project11.getYarns().addSupply("blue yarn");
+        project11.getNeedles().addSupply("10mm");
 
         testKnittingProjects.addKnittingProject(project11);
 
@@ -110,10 +110,10 @@ class AllKnittingProjectsTest {
         KnittingProject gottenProject;
         gottenProject = testKnittingProjects.getKnittingProject("project eleven");
         assertEquals("project eleven", gottenProject.getProjectName());
-        assertEquals(1, gottenProject.getYarns().size());
-        assertEquals("blue yarn", gottenProject.getYarns().get(0));
-        assertEquals(1, gottenProject.getNeedles().size());
-        assertEquals("10mm", gottenProject.getNeedles().get(0));
+        assertEquals(1, gottenProject.getYarns().getSupplies().size());
+        assertEquals("blue yarn", gottenProject.getYarns().getSupplies().get(0));
+        assertEquals(1, gottenProject.getNeedles().getSupplies().size());
+        assertEquals("10mm", gottenProject.getNeedles().getSupplies().get(0));
 
     }
 

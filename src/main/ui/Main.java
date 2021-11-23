@@ -33,8 +33,18 @@ public class Main {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                new PrintLogAction();
+                //new PrintLogAction();
+
+                Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+                    public void run() {
+                        System.out.println("In shutdown hook");
+                        LogPrinter lp;
+                        new ConsolePrinter();
+                    }
+                }, "Shutdown-thread"));
             }
+
+
         });
 
     }
