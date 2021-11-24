@@ -43,7 +43,7 @@ class LoadListener implements ActionListener {
 
             }
 
-            System.out.println("Loaded " + currentProjects.listProjectNames() + " from " + JSON_STORE);
+            System.out.println("Loaded " + projectPanel.getCurrentProjects().listProjectNames() + " from " + JSON_STORE);
         } catch (IOException a) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
