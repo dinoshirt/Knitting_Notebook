@@ -44,8 +44,8 @@ public class ProjectPanel extends JPanel
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes a anew JTextField, JPanel for projectPage, and AllKnittingProjects.
-    //          Adds a test project into currentProjects.
+    // EFFECTS: initializes a new JTextField, JPanel for projectPage, and AllKnittingProjects.
+
     public void initializeFields() {
         projectName = new JTextField(10);
         currentProjects = new AllKnittingProjects();
@@ -58,11 +58,10 @@ public class ProjectPanel extends JPanel
     // MODIFIES: this
     // EFFECTS: Initializes projectNameList as a new DefaultListModel, and
     //          initializes list as a new JList containing projectNameList and returns it in a scroll pane.
-    //          Adds a test project to the DefaultListModel.
     public JScrollPane initializeList() {
         //Create the list and put it in a scroll pane.
         projectNameList = new DefaultListModel();
-        projectNameList.addElement("test project");
+        //projectNameList.addElement("test project");
         list = new JList(projectNameList);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setSelectedIndex(0);
@@ -148,6 +147,8 @@ public class ProjectPanel extends JPanel
         panelRight = new NotePanel(firstProject);
         panelMiddle = new NeedlePanel(firstProject);
         panelLeft = new YarnPanel(firstProject);
+
+        currentProjects.getAllKnittingProjects().remove(0);
 
         add(initializeList(), BorderLayout.CENTER);
         add(initializeButtonsAndTextFields(), BorderLayout.PAGE_END);

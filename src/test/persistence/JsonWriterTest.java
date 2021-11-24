@@ -29,6 +29,9 @@ class JsonWriterTest extends JsonTest {
         }
     }
 
+
+
+
     @Test
     void testWriterEmptyNotebook() {
         try {
@@ -52,9 +55,9 @@ class JsonWriterTest extends JsonTest {
             AllKnittingProjects akp = new AllKnittingProjects();
             KnittingProject kp = new KnittingProject("My first project");
             Note newNote = new Note(parse("2021-10-23T15:07:46.316"), "Event 1");
-            kp.getYarns().addSupply("worsted");
-            kp.getNeedles().addSupply("metal");
-            kp.getNotes().addNote(newNote);
+            kp.getYarns().addSupply("worsted", kp);
+            kp.getNeedles().addSupply("metal", kp);
+            kp.getNotes().addNote(newNote, kp);
             akp.addKnittingProject(kp);
 
             JsonWriter writer = new JsonWriter("./data/testWriterOneProjectNotebook.json");

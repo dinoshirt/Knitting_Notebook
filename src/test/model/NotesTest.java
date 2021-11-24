@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NotesTest {
 
     private Notes testNotes;
+    private KnittingProject testProject;
 
     @BeforeEach
     public void runBefore() {
-        testNotes = new Notes();
+        testNotes = new Notes(testProject);
+        testProject = new KnittingProject("TEST");
     }
 
 
@@ -21,7 +23,7 @@ class NotesTest {
         note1.addToBody("new note 1");
         assertEquals(0, testNotes.getNotes().size());
 
-        testNotes.addNote(note1);
+        testNotes.addNote(note1, testProject);
         assertEquals(1, testNotes.getNotes().size());
         assertEquals(note1, testNotes.getNotes().get(0));
     }
@@ -53,7 +55,7 @@ class NotesTest {
         addOneNote();
         Note note2 = new Note();
         note2.addToBody("new note 2");
-        testNotes.addNote(note2);
+        testNotes.addNote(note2, testProject);
 
         gottenNotes = testNotes.showAllNotes();
         Note firstNote;
@@ -67,15 +69,15 @@ class NotesTest {
     @Test
     public void addManyNotes() {
         for(int i = 0; i < 10; i++) {
-            testNotes.addNote(new Note());
+            testNotes.addNote(new Note(), testProject);
         }
         assertEquals(10, testNotes.getNotes().size());
         Note note11 = new Note();
         note11.addToBody("eleventh note");
-        testNotes.addNote(note11);
+        testNotes.addNote(note11, testProject);
 
         for(int i = 0; i < 9; i++) {
-            testNotes.addNote(new Note());
+            testNotes.addNote(new Note(), testProject);
         }
         assertEquals(20, testNotes.getNotes().size());
         assertEquals(note11, testNotes.getNotes().get(10));

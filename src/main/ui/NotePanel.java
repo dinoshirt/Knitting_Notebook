@@ -120,9 +120,9 @@ public class NotePanel extends JPanel
     public void initializeNotesList() {
         //Create the list and put it in a scroll pane.
         notesList = new DefaultListModel();
-        Note testNote = new Note();
-        testNote.addToBody("test note");
-        notesList.addElement(testNote.getDateTimeAndBody());
+//        Note testNote = new Note();
+//        testNote.addToBody("test note");
+//        notesList.addElement(testNote.getDateTimeAndBody());
 
         for (Note n : notes.getNotes()) {
             notesList.addElement(n.getDateTimeAndBody());

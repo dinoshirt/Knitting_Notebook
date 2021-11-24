@@ -37,8 +37,7 @@ public class Main {
 
                 Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                     public void run() {
-                        System.out.println("In shutdown hook");
-                        LogPrinter lp;
+                        System.out.println("Closing Notebook");
                         new ConsolePrinter();
                     }
                 }, "Shutdown-thread"));

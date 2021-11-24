@@ -135,7 +135,7 @@ public class NeedlePanel extends JPanel
     public void initializeNeedleList() {
         //Create the list and put it in a scroll pane.
         needleList = new DefaultListModel();
-        needleList.addElement("test needle");
+        //needleList.addElement("test needle");
 
         for (String n : needles.getSupplies()) {
             needleList.addElement(n);

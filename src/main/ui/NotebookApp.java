@@ -178,7 +178,7 @@ public class NotebookApp {
         String itemName = input.next();
 
         startingSupplies = projectChosen.getYarns().getSupplies().size();
-        projectChosen.getYarns().removeSupply(itemName);
+        projectChosen.getYarns().removeSupply(itemName, projectChosen);
         postRemovalSupplies = projectChosen.getYarns().getSupplies().size();
 
         System.out.println(projectChosen.getYarns());
@@ -199,7 +199,7 @@ public class NotebookApp {
         String itemName = input.next();
 
         startingSupplies = projectChosen.getNeedles().getSupplies().size();
-        projectChosen.getNeedles().removeSupply(itemName);
+        projectChosen.getNeedles().removeSupply(itemName, projectChosen);
         postRemovalSupplies = projectChosen.getNeedles().getSupplies().size();
 
         System.out.println(projectChosen.getNeedles());
@@ -218,15 +218,15 @@ public class NotebookApp {
         String itemName = input.next();
 
         if (fieldChosen.equals("yarn")) {
-            projectChosen.getYarns().addSupply(itemName);
+            projectChosen.getYarns().addSupply(itemName, projectChosen);
             System.out.println(projectChosen.getYarns());
         } else if (fieldChosen.equals("needle")) {
-            projectChosen.getNeedles().addSupply(itemName);
+            projectChosen.getNeedles().addSupply(itemName, projectChosen);
             System.out.println(projectChosen.getNeedles());
         } else if (fieldChosen.equals("note")) {
             Note createdNote = new Note();
             createdNote.addToBody(itemName);
-            projectChosen.getNotes().addNote(createdNote);
+            projectChosen.getNotes().addNote(createdNote, projectChosen);
             System.out.println(createdNote.getDateTimeAndBody());
         }
         System.out.println("new " + fieldChosen + " was added!");

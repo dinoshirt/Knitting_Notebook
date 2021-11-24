@@ -35,7 +35,7 @@ class AddNoteListener implements ActionListener, DocumentListener {
         String writtenBody = noteInput.getText();
         Note createdNote = new Note();
         createdNote.addToBody(writtenBody);
-        currentProject.getNotes().addNote(createdNote);
+        currentProject.getNotes().addNote(createdNote, currentProject);
         notesList.addElement(createdNote.getDateTimeAndBody());
 
         //int index = currentProjects.getAllKnittingProjects().size() - 1;

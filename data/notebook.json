@@ -1,23 +1,14 @@
 {"all projects": [
     {
-        "needles": "model.Needles@1e044063",
+        "needles": [],
         "notes": [],
-        "project name": "test project",
-        "yarns": "model.Yarns@321e6e6"
+        "project name": "abc",
+        "yarns": []
     },
     {
-        "needles": "model.Needles@45c7e812",
+        "needles": [],
         "notes": [],
-        "project name": "asdfa",
-        "yarns": "model.Yarns@5a16efa0"
-    },
-    {
-        "needles": "model.Needles@66adabd9",
-        "notes": [{
-            "date and time": "2021-11-23T11:35:01.266",
-            "body": ": dddd"
-        }],
-        "project name": "sdfdf",
-        "yarns": "model.Yarns@6ab7673c"
+        "project name": "bcbcb",
+        "yarns": []
     }
 ]}

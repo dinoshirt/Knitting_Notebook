@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class JsonTest {
     protected void checkKnittingProject(String name, List<String> yarns, List<String> needles, KnittingProject kp) {
         assertEquals(name, kp.getProjectName());
-        assertEquals(yarns, kp.getYarns());
-        assertEquals(needles, kp.getNeedles());
+        assertEquals(yarns, kp.getYarns().getSupplies());
+        assertEquals(needles, kp.getNeedles().getSupplies());
         //assertEquals(notes, kp.getNotes());
     }
 

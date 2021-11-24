@@ -22,9 +22,9 @@ public class KnittingProject implements Writable {
     //The project will start with no yarns, needles, or notes.
     public KnittingProject(String newProjectName) {
         this.projectName = newProjectName;
-        this.yarns = new Yarns();
-        this.needles = new Needles();
-        this.notes = new Notes();
+        this.yarns = new Yarns(this);
+        this.needles = new Needles(this);
+        this.notes = new Notes(this);
     }
 
     //EFFECTS: returns the names of the project
@@ -52,8 +52,8 @@ public class KnittingProject implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("project name", projectName);
-        json.put("yarns", this.getYarns());
-        json.put("needles", this.getNeedles());
+        json.put("yarns", this.getYarns().getSupplies());
+        json.put("needles", this.getNeedles().getSupplies());
         json.put("notes", this.getNotes().notesToJson());
         return json;
     }

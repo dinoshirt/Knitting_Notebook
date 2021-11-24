@@ -49,8 +49,8 @@ class JsonReaderTest extends JsonTest {
             AllKnittingProjects akp = reader.read();
             assertEquals(2, akp.getAllKnittingProjects().size());
             KnittingProject correctProject = new KnittingProject("Proj1");
-            correctProject.getYarns().addSupply("blue");
-            correctProject.getNeedles().addSupply("10mm");
+            correctProject.getYarns().addSupply("blue", correctProject);
+            correctProject.getNeedles().addSupply("10mm", correctProject);
 
             checkKnittingProject("Proj1",
                     correctProject.getYarns().getSupplies(),
@@ -75,10 +75,10 @@ class JsonReaderTest extends JsonTest {
             AllKnittingProjects akp = reader.read();
             assertEquals(2, akp.getAllKnittingProjects().size());
             KnittingProject correctProject = new KnittingProject("Proj2");
-            correctProject.getYarns().addSupply("blue");
-            correctProject.getYarns().addSupply("yellow");
-            correctProject.getNeedles().addSupply("10mm");
-            correctProject.getNeedles().addSupply("11mm");
+            correctProject.getYarns().addSupply("blue", correctProject);
+            correctProject.getYarns().addSupply("yellow", correctProject);
+            correctProject.getNeedles().addSupply("10mm", correctProject);
+            correctProject.getNeedles().addSupply("11mm", correctProject);
 
             checkKnittingProject("Proj2",
                     correctProject.getYarns().getSupplies(),

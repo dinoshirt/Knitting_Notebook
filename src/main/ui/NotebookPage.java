@@ -18,7 +18,7 @@ public class NotebookPage extends JPanel
     //EFFECTS: Constructs a JPanel that shows projects on top and details in bottom
     public NotebookPage() {
         ProjectPanel projectPanel = new ProjectPanel();
-        KnittingProject startProject = projectPanel.getCurrentProjects().getAllKnittingProjects().get(0);
+        //KnittingProject startProject = projectPanel.getCurrentProjects().getAllKnittingProjects().get(0);
 
         JSplitPane splitPaneOne;
         JSplitPane splitPaneTwo;

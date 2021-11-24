@@ -22,8 +22,9 @@ class SaveListener implements ActionListener {
     public SaveListener(JButton button, ProjectPanel projectPanel) {
         this.button = button;
         this.currentProjects = projectPanel.getCurrentProjects();
+
         jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        //jsonReader = new JsonReader(JSON_STORE);
 
     }
 
@@ -31,6 +32,7 @@ class SaveListener implements ActionListener {
     // EFFECTS: Saves the notebook information by writing it to json.
     public void actionPerformed(ActionEvent e) {
         try {
+
             jsonWriter.open();
             jsonWriter.write(currentProjects);
             jsonWriter.close();

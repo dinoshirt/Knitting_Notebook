@@ -30,7 +30,7 @@ class RemoveNeedleListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String selectedNeedle = (String) needleJList.getSelectedValue();
-        currentProject.getNeedles().removeSupply(selectedNeedle);
+        currentProject.getNeedles().removeSupply(selectedNeedle, currentProject);
 
 
         int index = needleJList.getSelectedIndex();

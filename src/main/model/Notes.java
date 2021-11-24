@@ -9,10 +9,12 @@ import java.util.ArrayList;
 //This represents a list of notes, that may be associated with a knitting project.
 public class Notes {
     private ArrayList<Note> listOfNotes;
+    private KnittingProject knittingProject;
 
     //EFFECTS: constructs a new empty list of notes
-    public Notes() {
+    public Notes(KnittingProject kp) {
         listOfNotes = new ArrayList<>();
+        this.knittingProject = kp;
     }
 
     //EFFECTS: show all note date and body together as a string. Notes are separated by ";"
@@ -35,9 +37,9 @@ public class Notes {
 
     //MODIFIES: this
     //EFFECTS: adds a note to the back of the list
-    public void addNote(Note n) {
+    public void addNote(Note n, KnittingProject kp) {
         listOfNotes.add(n);
-        EventLog.getInstance().logEvent(new Event("Added a Note to the Project"));
+        EventLog.getInstance().logEvent(new Event("Added a Note to Project " + kp.getProjectName()));
     }
 
     // EFFECTS: converts each note into a JSONObject, and returns all notes as a JSONArray
