@@ -23,5 +23,29 @@ I hope this virtual knitting notebook will solve many of these issues and encour
 - I want to be able to save everything I have added to the notebook.
 - I want to be able to load a previously saved notebook when I open the app.
 
+## Phase 4: Task 2
+
+Below is an example of what gets printed to the console when the program is exited.
+
+- Closing Notebook
+- PRINTING ACTIONS PERFORMED:
+- Added to Notebook: Grey Hat
+- Added to project Grey Hat: Grey Worsted
+- Added to project Grey Hat: 10mm circular
+- Added a note to project Grey Hat
+- Added to Notebook: Infinity Scarf
+- Added to project Infinity Scarf: White Wool
+- Added to project Infinity Scarf: 16 mm straight
+- Added a note to project Infinity Scarf
+- Removed from project Infinity Scarf: White Wool
+- Added a note to project Infinity Scarf
+- THAT'S IT
+
+## Phase 4: Task 2
+
+Since the Yarn and Needle models extend the same abstract class, it would've been nice to have this relationship in the ui folder too. This would've reduced duplication by allowing the same methods/class to be used to add or remove yarns and needles from the selected project.
+
+As well, since the Yarn and Needle models only require the project name to print out the correct Event, I could've passed in a String instead to remove the association between KnittingSupplies and KnittingProject. Similarly, the KnittingProject field can be removed from Notes.
+
 
 

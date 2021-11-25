@@ -1,8 +1,5 @@
 package ui;
 
-import model.AllKnittingProjects;
-import model.KnittingProject;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

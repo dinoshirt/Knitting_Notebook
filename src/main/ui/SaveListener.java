@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 
 // This class saves the entire notebook state.
 class SaveListener implements ActionListener {
-    private boolean alreadyEnabled = false;
+
     private JButton button;
     private AllKnittingProjects currentProjects;
     private JsonWriter jsonWriter;
@@ -24,7 +24,6 @@ class SaveListener implements ActionListener {
 
         this.projectPanel = projectPanel;
         jsonWriter = new JsonWriter(JSON_STORE);
-        //jsonReader = new JsonReader(JSON_STORE);
 
     }
 

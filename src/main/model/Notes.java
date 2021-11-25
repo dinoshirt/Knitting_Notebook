@@ -39,7 +39,7 @@ public class Notes {
     //EFFECTS: adds a note to the back of the list
     public void addNote(Note n, KnittingProject kp) {
         listOfNotes.add(n);
-        EventLog.getInstance().logEvent(new Event("Added a Note to Project " + kp.getProjectName()));
+        EventLog.getInstance().logEvent(new Event("Added a note to project " + kp.getProjectName()));
     }
 
     // EFFECTS: converts each note into a JSONObject, and returns all notes as a JSONArray

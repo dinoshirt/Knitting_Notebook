@@ -18,19 +18,27 @@ class RemoveYarnListener implements ActionListener {
     private KnittingProject currentProject;
     private DefaultListModel yarnNameList;
     private JList yarnJList;
+    private ProjectPanel projectPanel;
 
     // EFFECTS: creates the RemoveYarnListener
-    public RemoveYarnListener(JButton button, YarnPanel yarnPanel, KnittingProject kp, JList yarnJList) {
+    public RemoveYarnListener(JButton button, YarnPanel yarnPanel, KnittingProject kp, JList yarnJList,
+                              ProjectPanel projectPanel) {
         this.button = button;
         this.currentProject = kp;
         this.yarnNameList = yarnPanel.getYarnList();
         this.yarnJList = yarnJList;
+        this.projectPanel = projectPanel;
     }
 
     // MODIFIES: yarnPanel, currentProject
     // EFFECTS: finds out which yarn was selected, and removes it.
     public void actionPerformed(ActionEvent e) {
 
+        String nameOfSelectedProject = (String) projectPanel.getCurrentSelectedProject();
+        //System.out.println(currentProjects.listProjectNames());
+        KnittingProject indexedProject = projectPanel.getCurrentProjects().getKnittingProject(nameOfSelectedProject);
+
+        currentProject = indexedProject;
         String selectedYarn = (String) yarnJList.getSelectedValue();
         currentProject.getYarns().removeSupply(selectedYarn, currentProject);
 
@@ -40,7 +48,7 @@ class RemoveYarnListener implements ActionListener {
 
         int size = yarnNameList.getSize();
 
-        if (size == 0) { //Nobody's left, disable firing.
+        if (size == 0) {
             button.setEnabled(false);
 
         } else { //Select an index.

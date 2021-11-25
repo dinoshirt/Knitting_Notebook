@@ -28,6 +28,8 @@ public class YarnPanel extends JPanel
     private JButton removeButton;
     private AddYarnListener addYarnListener;
 
+    private ProjectPanel projectPanel;
+
     public Yarns getYarns() {
         return this.yarns;
     }
@@ -41,10 +43,10 @@ public class YarnPanel extends JPanel
     }
 
     //EFFECTS: constructs a YarnPanel consisting of a list of yarns, and add/remove capabilities.
-    public YarnPanel(KnittingProject kp) {
+    public YarnPanel(KnittingProject kp, ProjectPanel projectPanel) {
         super(new BorderLayout());
 
-        initializeFields(kp);
+        initializeFields(kp, projectPanel);
         initializeYarnList();
 
         add(yarnScrollPane, BorderLayout.CENTER);
@@ -94,7 +96,8 @@ public class YarnPanel extends JPanel
     // EFFECTS: Returns a remove yarn button and adds an RemoveYarnListner to it.
     public void makeRemoveButton(KnittingProject kp) {
         removeButton = new JButton(removeString);
-        RemoveYarnListener removeYarnListener = new RemoveYarnListener(removeButton, this, kp, yarnJList);
+        RemoveYarnListener removeYarnListener = new RemoveYarnListener(removeButton, this, kp, yarnJList,
+                projectPanel);
         removeButton.setActionCommand(removeString);
         removeButton.addActionListener(removeYarnListener);
 
@@ -122,9 +125,10 @@ public class YarnPanel extends JPanel
 
     // MODIFIES: this
     // EFFECTS: initializes the yarns with the given project's yarns. Creates a new text field.
-    public void initializeFields(KnittingProject project) {
+    public void initializeFields(KnittingProject project, ProjectPanel projectPanel) {
         yarns = project.getYarns();
         yarnInput = new JTextField(10);
+        this.projectPanel = projectPanel;
     }
 
     // MODIFIES: this

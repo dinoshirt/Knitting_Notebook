@@ -31,6 +31,8 @@ public class ProjectPanel extends JPanel
     private NeedlePanel panelMiddle;
     private YarnPanel panelLeft;
 
+    private String currentSelectedProject;
+
     public JTextField getProjectName() {
         return projectName;
     }
@@ -50,7 +52,7 @@ public class ProjectPanel extends JPanel
         projectName = new JTextField(10);
         currentProjects = new AllKnittingProjects();
 
-        KnittingProject testProject = new KnittingProject("test project");
+        KnittingProject testProject = new KnittingProject("test project ignore");
         currentProjects.addKnittingProject(testProject);
         projectPage = new JPanel();
     }
@@ -145,8 +147,8 @@ public class ProjectPanel extends JPanel
         //initializeList();
         KnittingProject firstProject = currentProjects.getAllKnittingProjects().get(0);
         panelRight = new NotePanel(firstProject);
-        panelMiddle = new NeedlePanel(firstProject);
-        panelLeft = new YarnPanel(firstProject);
+        panelMiddle = new NeedlePanel(firstProject, this);
+        panelLeft = new YarnPanel(firstProject, this);
 
         currentProjects.getAllKnittingProjects().remove(0);
 
@@ -166,6 +168,10 @@ public class ProjectPanel extends JPanel
         return this.panelLeft;
     }
 
+    public String getCurrentSelectedProject() {
+        return this.currentSelectedProject;
+    }
+
     // MODIFIES: this
     // EFFECTS: resets the currentProjects with the given loadedProjects
     public void resetCurrentProjects(AllKnittingProjects loadedProjects) {
@@ -177,9 +183,9 @@ public class ProjectPanel extends JPanel
     // EFFECTS: Upon selecting a project, the panels will be updated with the selected project info.
     public void valueChanged(ListSelectionEvent e) {
 
-        String nameOfSelectedProject = (String) list.getSelectedValue();
+        currentSelectedProject = (String) list.getSelectedValue();
         //System.out.println(currentProjects.listProjectNames());
-        KnittingProject indexedProject = currentProjects.getKnittingProject(nameOfSelectedProject);
+        KnittingProject indexedProject = currentProjects.getKnittingProject(currentSelectedProject);
 
         panelRight.resetNotesFields(indexedProject);
 

@@ -1,6 +1,26 @@
-{"all projects": [{
-    "needles": [],
-    "notes": [],
-    "project name": "hhh",
-    "yarns": []
-}]}
+{"all projects": [
+    {
+        "needles": ["10mm circular"],
+        "notes": [{
+            "date and time": "2021-11-24T18:52:11.593",
+            "body": ": Cast on project"
+        }],
+        "project name": "Grey Hat",
+        "yarns": ["Grey Worsted"]
+    },
+    {
+        "needles": ["16 mm straight"],
+        "notes": [
+            {
+                "date and time": "2021-11-24T18:53:23.947",
+                "body": ": Bought wrong yarn"
+            },
+            {
+                "date and time": "2021-11-24T18:53:23.947",
+                "body": ": Bought wrong yarn"
+            }
+        ],
+        "project name": "Infinity Scarf",
+        "yarns": []
+    }
+]}

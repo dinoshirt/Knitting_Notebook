@@ -1,18 +1,10 @@
 package ui;
 
 import model.EventLog;
-import model.LogException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+
 
 // This class runs the notebook application so it has a GUI
 // This class references code from here: ListDemo.java
@@ -20,8 +12,6 @@ import java.util.List;
 
 
 public class Main {
-
-    private static final String FILE_DESCRIPTOR = "...file";
 
     // EFFECTS: runs the GUI
     public static void main(String[] args) {

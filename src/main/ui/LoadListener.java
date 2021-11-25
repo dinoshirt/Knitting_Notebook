@@ -11,7 +11,7 @@ import java.io.IOException;
 
 // This class loads previously saved notebook information (projects and info).
 class LoadListener implements ActionListener {
-    private boolean alreadyEnabled = false;
+
     private JButton button;
     private AllKnittingProjects currentProjects;
     private JsonReader jsonReader;
@@ -43,7 +43,9 @@ class LoadListener implements ActionListener {
 
             }
 
-            System.out.println("Loaded " + projectPanel.getCurrentProjects().listProjectNames() + " from " + JSON_STORE);
+            System.out.println("Loaded "
+                    + projectPanel.getCurrentProjects().listProjectNames()
+                    + " from " + JSON_STORE);
         } catch (IOException a) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

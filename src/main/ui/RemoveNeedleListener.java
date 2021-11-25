@@ -16,19 +16,26 @@ class RemoveNeedleListener implements ActionListener {
     private KnittingProject currentProject;
     private DefaultListModel needleNameList;
     private JList needleJList;
+    private ProjectPanel projectPanel;
 
     // EFFECTS: creates the RemoveNeedleListener
-    public RemoveNeedleListener(JButton button, NeedlePanel needlePanel, KnittingProject kp, JList needleJList) {
+    public RemoveNeedleListener(JButton button, NeedlePanel needlePanel, KnittingProject kp, JList needleJList,
+                                 ProjectPanel projectPanel) {
         this.button = button;
         this.currentProject = kp;
         this.needleNameList = needlePanel.getNeedleList();
         this.needleJList = needleJList;
+        this.projectPanel = projectPanel;
     }
 
     // MODIFIES: needlePanel, currentProject
     // EFFECTS: finds out which needle was selected, and removes it.
     public void actionPerformed(ActionEvent e) {
 
+        String nameOfSelectedProject = (String) projectPanel.getCurrentSelectedProject();
+        KnittingProject indexedProject = projectPanel.getCurrentProjects().getKnittingProject(nameOfSelectedProject);
+
+        currentProject = indexedProject;
         String selectedNeedle = (String) needleJList.getSelectedValue();
         currentProject.getNeedles().removeSupply(selectedNeedle, currentProject);
 

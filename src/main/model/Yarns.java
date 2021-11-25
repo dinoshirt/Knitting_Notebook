@@ -13,17 +13,17 @@ public class Yarns extends KnittingSupplies {
         super(kp);
     }
 
-    public JSONArray yarnsToJson() {
-        JSONArray jsonArray = new JSONArray();
-        JSONObject json = new JSONObject();
-
-        for (int i = 0; i < this.getSupplies().size(); i++) {
-            String supplyName = this.getSupplies().get(i);
-            jsonArray.put(supplyName);
-        }
-
-        return jsonArray;
-    }
+//    public JSONArray yarnsToJson() {
+//        JSONArray jsonArray = new JSONArray();
+//        JSONObject json = new JSONObject();
+//
+//        for (int i = 0; i < this.getSupplies().size(); i++) {
+//            String supplyName = this.getSupplies().get(i);
+//            jsonArray.put(supplyName);
+//        }
+//
+//        return jsonArray;
+//    }
 
 
 }

@@ -28,7 +28,7 @@ public abstract class KnittingSupplies {
     //EFFECTS: adds the given supply to the list of supplies
     public void addSupply(String supply, KnittingProject kp) {
         listOfSupplies.add(supply);
-        EventLog.getInstance().logEvent(new Event("Added to Project " + kp.getProjectName() + ": " + supply));
+        EventLog.getInstance().logEvent(new Event("Added to project " + kp.getProjectName() + ": " + supply));
 
     }
 
@@ -37,7 +37,7 @@ public abstract class KnittingSupplies {
     //EFFECTS: removes the given supply to the list of supplies
     public void removeSupply(String supply, KnittingProject kp) {
         listOfSupplies.remove(supply);
-        EventLog.getInstance().logEvent(new Event("Removed from Project " + kp.getProjectName() + ": " + supply));
+        EventLog.getInstance().logEvent(new Event("Removed from project " + kp.getProjectName() + ": " + supply));
     }
 
 

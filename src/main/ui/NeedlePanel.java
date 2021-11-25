@@ -26,6 +26,7 @@ public class NeedlePanel extends JPanel
     private AddNeedleListener addNeedleListener;
 
     private JButton removeButton;
+    private ProjectPanel projectPanel;
 
     public Needles getNeedles() {
         return this.needles;
@@ -40,10 +41,10 @@ public class NeedlePanel extends JPanel
     }
 
     //EFFECTS: constructs a NeedlePanel consisting of a list of needles, and add/remove capabilities.
-    public NeedlePanel(KnittingProject kp) {
+    public NeedlePanel(KnittingProject kp, ProjectPanel projectPanel) {
         super(new BorderLayout());
 
-        initializeFields(kp);
+        initializeFields(kp, projectPanel);
         initializeNeedleList();
 
         add(needleScrollPane, BorderLayout.CENTER);
@@ -73,7 +74,8 @@ public class NeedlePanel extends JPanel
         RemoveNeedleListener removeNeedleListener = new RemoveNeedleListener(removeButton,
                 this,
                 kp,
-                needleJList);
+                needleJList,
+                projectPanel);
         removeButton.setActionCommand(removeString);
         removeButton.addActionListener(removeNeedleListener);
 
@@ -101,9 +103,10 @@ public class NeedlePanel extends JPanel
 
     // MODIFIES: this
     // EFFECTS: initializes the needles with the given project's needles. Creates a new text field.
-    public void initializeFields(KnittingProject project) {
+    public void initializeFields(KnittingProject project, ProjectPanel projectPanel) {
         needles = project.getNeedles();
         needleInput = new JTextField(10);
+        this.projectPanel = projectPanel;
     }
 
     // MODIFIES: this
