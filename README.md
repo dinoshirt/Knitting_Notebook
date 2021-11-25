@@ -41,7 +41,7 @@ Below is an example of what gets printed to the console when the program is exit
 - Added a note to project Infinity Scarf
 - THAT'S IT
 
-## Phase 4: Task 2
+## Phase 4: Task 3
 
 Since the Yarn and Needle models extend the same abstract class, it would've been nice to have this relationship in the ui folder too. This would've reduced duplication by allowing the same methods/class to be used to add or remove yarns and needles from the selected project.
 
