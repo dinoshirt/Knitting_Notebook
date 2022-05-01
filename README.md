@@ -8,11 +8,8 @@ If only I'd written down that trick I used to shape the heel, the number of rows
 "Documentation is important!" I know, but why didn't I just write down these notes in the first place?
 
 I do have a physical notebook, but keeping track of multiple projects looks messy and disjointed, as you can't move the pages around to group each project.
-Sometimes notes don't belong to a certain project, like tips/tricks that may have been discovered, or just a stray idea or thought that inspired you. In a physical notebook, these little free-floating notes can easily be lost.
-As well, you can't easily paste in pictures, charts, or videos you might want to reference later. 
-
-I hope this virtual knitting notebook will solve many of these issues and encourage me to document my process more often.
-*Note, this is not meant to replace Ravelry, a wonderful website with **many** functionalities. I simply wanted a more free-form virtual space to document my thoughts*
+I hope this virtual knitting notebook will solve this issue and encourage me to document my process more often.
+*Note, this is not meant to replace Ravelry, a wonderful website with **many** functionalities.*
 
 ## User stories
 
@@ -40,12 +37,6 @@ Below is an example of what gets printed to the console when the program is exit
 - Removed from project Infinity Scarf: White Wool
 - Added a note to project Infinity Scarf
 - THAT'S IT
-
-## Phase 4: Task 3
-
-Since the Yarn and Needle models extend the same abstract class, it would've been nice to have this relationship in the ui folder too. This would've reduced duplication by allowing the same methods/class to be used to add or remove yarns and needles from the selected project.
-
-As well, since the Yarn and Needle models only require the project name to print out the correct Event, I could've passed in a String instead to remove the association between KnittingSupplies and KnittingProject. Similarly, the KnittingProject field can be removed from Notes.
 
 
 
